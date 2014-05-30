@@ -1,4 +1,11 @@
 Homestreetapp::Application.routes.draw do
+  get "resident/new"
+  get "resident/create"
+  get "resident/index"
+  get "resident/edit"
+  get "resident/update"
+  get "resident/show"
+  devise_for :users
   resources :partners
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
