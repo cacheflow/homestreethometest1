@@ -1,38 +1,11 @@
 Homestreetapp::Application.routes.draw do
-  get "statuses/new"
-  get "statuses/create"
-  get "statuses/show"
-  get "statuses/index"
-  get "donations/new"
-  get "donations/create"
-  get "donations/show"
-  get "donations/index"
-  get "donors/new"
-  get "donors/create"
-  get "donors/edit"
-  get "donors/update"
-  get "residents/new"
-  get "residents/create"
-  get "residents/edit"
-  get "residents/update"
-  get "residents/show"
-  get "residents/index"
-  get "donation/new"
-  get "donation/create"
-  get "donation/show"
-  get "donation/index"
-  get "donor/new"
-  get "donor/create"
-  get "donor/edit"
-  get "donor/update"
-  get "resident/new"
-  get "resident/create"
-  get "resident/index"
-  get "resident/edit"
-  get "resident/update"
-  get "resident/show"
+  root to: "residents#index"
   devise_for :users
   resources :partners
+  resources :residents
+  resources :statuses
+  resources :donors
+  resources :donations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
