@@ -1,15 +1,24 @@
 require 'spec_helper'
 
 describe PartnersController do
+  before do
+    @partneruser = User.create!(role:'fulfillment partner', email: 'pineapple@gmail.com', password:'12345678')
+    sign_in @partneruser
+  end
   let :valid_attributes do
     { 
       org: 'salvation army',
       address: '121 here place',
       phone: 8186754321,
       email: 'calvin@harris.com',
-      website: 'imagnoway.com'
+      website: 'imagnoway.com',
+      user_id: @partneruser.id
     }
   end
+  
+
+
+
 
   describe "GET 'index'" do
     before do
@@ -64,11 +73,13 @@ describe PartnersController do
     describe 'successful create' do 
       it 'should save to db' do 
         expect do
+          
           post :create, partner: valid_attributes
         end.to change(Partner, :count).by(1)
       end
       it 'should redirect to partners index' do
-        post :create, partner: valid_attributes
+        
+        post :create, partner: valid_attributes   
         expect(response).to redirect_to partners_path
       end
       end

@@ -1,5 +1,5 @@
 class PartnersController < ApplicationController
-
+  load_and_authorize_resource
   def new
     @partner = Partner.new
   end
@@ -37,6 +37,6 @@ class PartnersController < ApplicationController
     @residents = @partner.residents
   end
   def partner_params
-    params.require(:partner).permit(:org, :address, :phone, :email, :website, :resident_id)
+    params.require(:partner).permit(:org, :address, :phone, :email, :website, :resident_id, :user_id)
   end
 end
