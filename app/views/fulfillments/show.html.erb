@@ -1,3 +1,18 @@
 <% if (@is_admin) %>
 <%= link_to 'Edit', edit_fulfillment_path(@fulfillment) %>
 <% end %>
+
+<% if (@is_admin && (!@fulfillment.has_valid_wepay_access_token? || !@fulfillment.has_wepay_account?)) %>
+  <p>
+    <b>Please create an account to manage your money: </b>
+	<% redirect_uri = url_for(:controller => 'fulfillments', :action => 'oauth', :fulfillment_id => @fulfillment.id, :host => request.host_with_port) %>
+    <a class="btn btn-primary" href="<%= @fulfillment.wepay_authorization_url(redirect_uri) %>">Click here to create your account</a>
+  </p>
+
+  <h1><%= @fulfillment.name %></h1>
+
+<% if (@fulfillment.has_wepay_account? && !@is_admin) %>
+<br />
+<%= link_to "Buy #{@fulfillment.name} Now!", "/fulfillments/donations/#{@fulfillment.id}", :class => 'btn btn-danger btn-large', :id => 'donations-now-button' %>
+<% end %>
+<% end %>

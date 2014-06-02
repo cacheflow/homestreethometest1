@@ -7,6 +7,7 @@ Homestreetapp::Application.routes.draw do
   get '/login' => 'sessions#new', :as => :login
   get '/logout' => 'sessions#destroy', :as => :logout
   post '/sessions/create' => 'sessions#create'
+  get '/fulfillments/:action(/:fulfillment_id)', :controller => 'fulfillments'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
