@@ -1,0 +1,11 @@
+<%= form_for (@partner) do |f| %>
+	Organization <%= f.text_field :org %><br />
+	Address <%= f.text_field :address %><br />
+	Phone <%= f.text_field :phone %><br />
+	Email <%= f.text_field :email, :value => current_user.email %><br />
+	Website <%= f.text_field :website %><br />
+	<%= f.hidden_field :user_id, :value => current_user.id %><br />
+	<%= f.submit %>
+
+
+<% end %>
