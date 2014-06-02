@@ -1,5 +1,11 @@
 Homestreetapp::Application.routes.draw do
+  root to: "residents#index"
+  devise_for :users
   resources :partners
+  resources :residents
+  resources :statuses
+  resources :donors
+  resources :donations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
