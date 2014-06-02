@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602200200) do
+ActiveRecord::Schema.define(version: 20140602205755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140602200200) do
     t.integer  "resident_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "donors", ["donations_id"], name: "index_donors_on_donations_id", using: :btree
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140602200200) do
     t.integer  "resident_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "partners", ["resident_id"], name: "index_partners_on_resident_id", using: :btree
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140602200200) do
     t.integer  "donors_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "residents", ["donors_id"], name: "index_residents_on_donors_id", using: :btree
