@@ -1,2 +1,9 @@
 <h1>Partners#show</h1>
 <p>Find me in app/views/partners/show.html.erb</p>
+<%= @partner.org %>
+<%= @partner.residents.count %>
+<% @partner.residents.each do |r| %>
+	<ul>
+		<li><%= r.name %></li>
+	</ul>
+<% end %>

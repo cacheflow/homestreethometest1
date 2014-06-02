@@ -3,15 +3,16 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    can :read, :all
+    
     if user.role_id == 4
         can :manage, :all
-    end
-    if user.role_id == 3
+    elsif user.role_id == 3
         can :read, :all
         can :create, Partner
-        can :manage, Partner, :user_id => user.id    
+        can :manage, Partner, :user_id => user.id 
 
+    else
+        can :read, :all
     end
     # Define abilities for the passed in user here. For example:
     #
