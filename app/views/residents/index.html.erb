@@ -1,1 +1,8 @@
 <h1> residents </h1>
+<% @residents.each do |p| %>
+	<ul>
+	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> homeless people
+	<%= link_to 'details', partner_path(p) %></li>
+	</ul>
+
+<% end %>
