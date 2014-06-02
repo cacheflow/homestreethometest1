@@ -1,4 +1,5 @@
 class PartnersController < ApplicationController
+  load_and_authorize_resource
   def new
     @partner = Partner.new
   end
