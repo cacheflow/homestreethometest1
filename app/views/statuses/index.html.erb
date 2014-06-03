@@ -1,0 +1,9 @@
+<h1> Statuses </h1>
+<% @statuses.each do |p| %>
+	<ul>
+	<li><%= p.created_at %> : <%= p.content %> </li>
+	<%= link_to 'details', resident_status_path(@resident, p) %> <%= link_to 'edit', edit_resident_status_path(@resident, p) %>
+	</li>
+	</ul>
+
+<% end %>
