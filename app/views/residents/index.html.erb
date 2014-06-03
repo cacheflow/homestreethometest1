@@ -1,7 +1,7 @@
 <h1> residents </h1>
 <% @residents.each do |p| %>
 	<ul>
-	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> 
+	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> <%= link_to 'Details', resident_path(p) %> <%= link_to 'Edit', edit_resident_path(p) %>
 	</ul>
 
 <% end %>

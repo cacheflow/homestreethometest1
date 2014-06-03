@@ -1,5 +1,6 @@
 class Ability
   include CanCan::Ability
+ 
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
@@ -10,6 +11,14 @@ class Ability
         can :read, :all
         can :create, Partner
         can :manage, Partner, :user_id => user.id 
+        can :manage, Resident do |res|
+             @partner = Partner.where(:user_id => user.id)[0]
+             res.partner_id == @partner.id
+        end
+    elsif user.role_id ==2
+        can :read, :all
+        can :create, Resident
+        can :manage, Resident, :user_id => user.id
 
     else
         can :read, :all
