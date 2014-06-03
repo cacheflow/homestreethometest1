@@ -1,4 +1,5 @@
 class DonorsController < ApplicationController
+  load_and_authorize_resource
   def new
     @donor = Donor.new
   end

@@ -15,11 +15,15 @@ class Ability
              @partner = Partner.where(:user_id => user.id)[0]
              res.partner_id == @partner.id
         end
+        can :create, Resident
     elsif user.role_id ==2
         can :read, :all
         can :create, Resident
         can :manage, Resident, :user_id => user.id
-
+    elsif user.role_id ==1
+        can :read, :all
+        can :create, Donor
+        can :manage, Donor, :user_id => user.id
     else
         can :read, :all
     end
