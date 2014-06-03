@@ -1,5 +1,5 @@
 class DonorsController < ApplicationController
-	def new
+  def new
     @donor = Donor.new
   end
 
@@ -36,6 +36,6 @@ class DonorsController < ApplicationController
     @residents = @donor.residents
   end
   def donor_params
-    params.require(:donor).permit(:org, :address, :phone, :email, :website, :resident_id)
+    params.require(:donor).permit(:name, :org, :phone, :email, :email_updates, :phone_updates, :user_id)
   end
 end

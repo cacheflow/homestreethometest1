@@ -1,0 +1,13 @@
+<h1> Donors </h1>
+
+<% @donors.each do |p| %>
+	<ul>
+	<li><%= p.name %> with <%= p.donations.count %> to  <%= p.residents.count %> homeless people
+	<%= link_to 'details', donor_path(p) %> <%= link_to 'edit', edit_donor_path(p) %>
+		<% p.donations.each do |d| %>
+			Donation Amount: <%= d.amount %>
+		<% end %>
+	</li>
+	</ul>
+
+<% end %>
