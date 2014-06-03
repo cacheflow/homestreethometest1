@@ -1,7 +1,15 @@
 <h1> residents </h1>
+
+<% if can? :create, Resident %>
+		<%= link_to 'New Resident', new_resident_path %>
+<% end %>
+<br></br>
 <% @residents.each do |p| %>
 	<ul>
-	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> <%= link_to 'Details', resident_path(p) %> <%= link_to 'Edit', edit_resident_path(p) %>
+	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> <%= link_to 'Details', resident_path(p) %> 
+	<% if can? :edit, p %>
+		<%= link_to 'Edit', edit_resident_path(p) %>
+	<% end %>
 	</ul>
-
 <% end %>
+

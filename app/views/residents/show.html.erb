@@ -1,5 +1,10 @@
 <h1> Resident </h1>
 
+<% if can? :edit, @resident %>
+		<%= link_to 'Edit', edit_resident_path(@resident) %>
+	<% end %>
+<br></br>
+
 <%= @resident.name %> <%= @resident.bio %><br />
 
 Has raised $<%= @resident.total_donations %> through <%= @resident.donations.count %> donations
