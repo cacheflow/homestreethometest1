@@ -1,7 +1,18 @@
 <h1> Resident </h1>
 
 <%= @resident.name %> <%= @resident.bio %><br />
-<%= link_to 'Donate', new_resident_donation_path(@resident) %>
 
-Has <%= @resident.donations.count %> donations
-Total donations <%= @resident.total_donations %>
+Has raised $<%= @resident.total_donations %> through <%= @resident.donations.count %> donations
+<br></br>
+<%= link_to 'Donate', new_resident_donation_path(@resident) %>
+<br></br>
+
+<!-- Displays the Status of the RC if they have any -->
+<% if @resident.statuses.count >0 %>
+	<%= link_to 'Statuses', resident_statuses_path(@resident) %> 
+	<% @resident.statuses.each do |s| %>
+		<ul> 
+			<li><%= s.created_at %> : <%= s.content %></li>
+		</ul>
+	<% end %>
+<% end %>

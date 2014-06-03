@@ -4,8 +4,8 @@ Homestreetapp::Application.routes.draw do
   resources :partners
   resources :residents do
     resources :donations
+    resources :statuses
   end
-  resources :statuses
   resources :donors
   
   # The priority is based upon order of creation: first created -> highest priority.
