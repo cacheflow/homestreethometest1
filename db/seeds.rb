@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+['user', 'resident', 'partner', 'admin'].each do |role|
+  Role.find_or_create_by_name role
+end
+
+donation = Donation.create([ { amount: 100 } ])
+
+donation.donor.create(name: "You!")
