@@ -1,4 +1,5 @@
 class ResidentsController < ApplicationController
+  load_and_authorize_resource
   def new
     @resident = Resident.new
   end
