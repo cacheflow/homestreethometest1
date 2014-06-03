@@ -1,4 +1,5 @@
 class Resident < ActiveRecord::Base
+  belongs_to :user
   belongs_to :partner
   has_many :statuses
   has_many :donations

@@ -30,6 +30,7 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.1.4)
+    cancancan (1.8.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -134,7 +135,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+<<<<<<< HEAD
   bootstrap-sass (~> 3.1.1)
+=======
+  cancancan (~> 1.8)
+>>>>>>> 98371403d2e609f13055ad1b36f14fafe49db25e
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 1.2)
