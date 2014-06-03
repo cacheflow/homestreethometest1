@@ -1,7 +1,28 @@
 <h1> Statuses </h1>
 <% @statuses.each do |p| %>
 	<ul>
-	<li><%= p.created_at %> : <%= p.content %> </li>
+	<li>
+	<% if Time.new.utc.year == p.created_at.to_s.split(/[^0-9]+/)[0].to_i%>
+			<% if Time.new.utc.month == p.created_at.to_s.split(/[^0-9]+/)[1].to_i %>
+				<% if Time.new.utc.day == p.created_at.to_s.split(/[^0-9]+/)[2].to_i %>
+					<% if Time.new.utc.hour == p.created_at.to_s.split(/[^0-9]+/)[3].to_i %>
+						<% if Time.new.utc.min == p.created_at.to_s.split(/[^0-9]+/)[4].to_i %>
+						a few seconds ago
+						<% else %>
+						<%= Time.new.utc.min - p.created_at.to_s.split(/[^0-9]+/)[4].to_i %> minutes ago
+						<% end %>
+					<% else %>
+						<%= Time.new.utc.hour - p.created_at.to_s.split(/[^0-9]+/)[3].to_i %> hours ago
+					<% end %>
+				<% else %>
+					<%= Time.new.utc.day - p.created_at.to_s.split(/[^0-9]+/)[2].to_i %> days ago
+				<% end %>
+			<% else %> <%= Time.new.utc.month - p.created_at.to_s.split(/[^0-9]+/)[1].to_i %> months ago
+			<% end %>
+		<% else %>
+		<%= Time.new.utc.year - p.created_at.to_s.split(/[^0-9]+/)[0].to_i %> years ago 
+		<% end %>
+	 : <%= p.content %> </li>
 	<%= link_to 'details', resident_status_path(@resident, p) %> <%= link_to 'edit', edit_resident_status_path(@resident, p) %>
 	</li>
 	</ul>
