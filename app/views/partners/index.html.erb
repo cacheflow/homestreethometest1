@@ -1,2 +1,10 @@
 <h1>Partners#index</h1>
 <p>Find me in app/views/partners/index.html.erb</p>
+
+<% @partners.each do |p| %>
+	<ul>
+	<li><%= p.org %> on <%= p.address %> with <%= p.residents.count %> homeless people
+	<%= link_to 'details', partner_path(p) %></li>
+	</ul>
+
+<% end %>

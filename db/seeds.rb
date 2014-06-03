@@ -10,6 +10,7 @@
   Role.find_or_create_by_name role
 end
 
+donor = Donor.create([ { name: "You", org: "StillYou.org" }])
 donation = Donation.create([ { amount: 100 } ])
 
 donation.donor.create(name: "You!")
