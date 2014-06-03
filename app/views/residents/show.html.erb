@@ -1,0 +1,7 @@
+<h1> Resident </h1>
+
+<%= @resident.name %> <%= @resident.bio %><br />
+<%= link_to 'Donate', new_resident_donation_path(@resident) %>
+
+Has <%= @resident.donations.count %> donations
+Total donations <%= @resident.total_donations %>

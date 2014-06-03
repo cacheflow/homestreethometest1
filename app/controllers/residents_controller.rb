@@ -33,6 +33,8 @@ class ResidentsController < ApplicationController
   def index
     @residents = Resident.all
   end
+
+ 
   def resident_params
     params.require(:resident).permit(:name, :bio, :goals, :partner_id, :picture, :user_id)
   end
