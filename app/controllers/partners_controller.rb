@@ -7,6 +7,7 @@ class PartnersController < ApplicationController
   def create
     @partner = Partner.new(partner_params)
     if @partner.save
+      UserMailer.welcome_email(@partner).deliver
       redirect_to partners_path
     else
       render 'new'
