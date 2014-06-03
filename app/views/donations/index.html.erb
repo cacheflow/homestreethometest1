@@ -4,6 +4,8 @@
 	<% @donations.each do |d| %>
 				<tr>			
 					<td class="links" class="rows">
+						<%= link_to d.name, d,'data-no-turbolink' => true %></td>
+					<td class="rows"><%= d.org %></td>
 					<td class="rows"><%= d.amount%></td>
 					</td>
 			
