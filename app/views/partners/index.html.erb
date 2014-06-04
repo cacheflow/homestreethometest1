@@ -1,10 +1,29 @@
-<h1>Partners#index</h1>
-<p>Find me in app/views/partners/index.html.erb</p>
+<div ng-app="partner-app" class="container">
+  <h1>Partners</h1>
 
-<% @partners.each do |p| %>
-	<ul>
-	<li><%= p.org %> on <%= p.address %> with <%= p.residents.count %> homeless people
-	<%= link_to 'details', partner_path(p) %></li> <%= link_to 'edit', edit_partner_path(p) %></li>
-	</ul>
+  <div ng-controller="PartnerCtrl">
 
-<% end %>
+     <div class="form-group">
+
+        <input ng-model="searchPartner" type="text" class="form-control">
+          {{ searchPartner}}
+      </div>
+    <table class="table">
+      <tbody>
+      <tr ng-repeat="partner in partners | filter: searchPartner ">
+        <td>
+        {{partner.name}} of {{partner.org}} 
+        
+        </td>
+
+        <td>
+  
+        
+      </tr>
+      </tbody>
+      </table>
+    
+   
+
+  </div>
+</div>
