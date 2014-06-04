@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <h1>residents</h1>
+=======
+<h1> residents </h1>
+>>>>>>> melabranch
 
 <% if can? :create, Resident %>
 		<%= link_to 'New Resident', new_resident_path %>
@@ -7,6 +11,15 @@
 <% @residents.each do |p| %>
 	<ul>
 	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> <%= link_to 'Details', resident_path(p) %> 
+<<<<<<< HEAD
 	
 	</ul>
 <% end %>
+=======
+	<% if can? :edit, p %>
+		<%= link_to 'Edit', edit_resident_path(p) %>
+	<% end %>
+	</ul>
+<% end %>
+
+>>>>>>> melabranch
