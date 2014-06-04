@@ -13,10 +13,29 @@
       <tr ng-repeat="partner in partners | filter: searchPartner ">
         <td>
         {{partner.name}} of {{partner.org}} 
+        <div ng-show="partner.details">
+          <dl>
+            <dt>Name</dt>
+            <dd>{{partner.name}}</dd>
+            <dt>Email</dt>
+            <dd>{{partner.email}}</dd>
+            <dt>Organization:</dt>
+            <dd>{{partner.organization}}</dd>
+            <dt>Address:</dt>
+            <dd>{{partner.address}}</dd>
+
+            
+
+          </dl>
+          </div>
         
         </td>
 
+
         <td>
+        <span ng-hide="!partner.details"><a ng-click="hidePartner(partner)">Hide</a></span>
+        <span ng-hide="partner.details"><a ng-click="showPartner(partner)">Show</a></span>
+        </td>
   
         
       </tr>

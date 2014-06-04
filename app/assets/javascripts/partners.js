@@ -26,5 +26,10 @@ partnerApp.controller('PartnerCtrl', ['$scope', 'Partner', function($scope, Part
 $scope.showPartner = function(partner){
       partner.details = true;
     }
+$scope.hidePartner = function(partner){
+      partner.details = false;
+    }
+
+
 
    }])
