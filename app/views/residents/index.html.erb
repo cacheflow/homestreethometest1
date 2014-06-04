@@ -1,12 +1,15 @@
-<% if can? :create, Resident %>
-		<%= link_to 'New Resident', new_resident_path %>
-<% end %>
-<br></br>
-<% @residents.each do |p| %>
-	<ul>
-	<li><%= p.name %> on <%= p.bio %> with <%= p.goals %> <%= link_to 'Details', resident_path(p) %></li>	
-	</ul>
-<% end %>
+<div ng-app="resident-app" class="container">
+  <h1>Residents</h1>
 
+  <div ng-controller="ResidentCtrl">
 
+   	<ul>
+      <li ng-repeat="resident in residents ">
+      
+        {{resident.name}}-- {{resident.bio}} 
+      </li>
+    </ul>
+   
 
+  </div>
+</div>
