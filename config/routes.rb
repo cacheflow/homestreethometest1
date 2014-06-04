@@ -6,7 +6,12 @@ Homestreetapp::Application.routes.draw do
     resources :donations
     resources :statuses
   end
-  resources :donors
+  resources :donors do
+    resources :donations
+    resources :residents do
+      resources :statuses
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

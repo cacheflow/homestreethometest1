@@ -1,7 +1,9 @@
 <%= form_for @donation, url: {action: "create"} do |f| %>
 	Amount <%= f.text_field :amount %><br />
 	<%= f.hidden_field :resident_id, :value => @resident.id %>
-	
+	<% if Donor.where(:user_id => current_user.id)[0] != nil %>
+	<%= f.hidden_field :donor_id, :value => Donor.where(:user_id => current_user.id)[0].id %>
+	<% end %>
 	<%= f.submit %>
 
 

@@ -1,0 +1,11 @@
+<h1>Donors#show</h1>
+<p>Find me in app/views/donors/show.html.erb</p>
+<%= @donor.name %>
+<br>
+<%= @donor.org %>
+<%= @donor.residents.count %>
+<% @donor.residents.each do |d| %>
+	<ul>
+		<li><%= d.name %></li>
+	</ul>
+<% end %>
