@@ -18,7 +18,9 @@ class Ability
         can :create, Resident
     elsif user.role_id ==2
         can :read, :all
-        can :create, Resident
+        can :create, Resident do |res|
+            @resident = Resident.where(:user_id => current_user.id)
+        end
         can :manage, Resident, :user_id => user.id
     elsif user.role_id ==1
         can :read, :all
