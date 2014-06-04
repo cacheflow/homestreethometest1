@@ -27,6 +27,9 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     bcrypt (3.1.7)
+    bootstrap-forms (0.0.4)
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
     builder (3.1.4)
     cancancan (1.8.1)
     coffee-rails (4.0.1)
@@ -133,6 +136,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-forms
+  bootstrap-sass (~> 3.1.1)
   cancancan (~> 1.8)
   coffee-rails (~> 4.0.0)
   devise
