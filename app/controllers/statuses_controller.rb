@@ -10,8 +10,10 @@ class StatusesController < ApplicationController
 
   def create
   	@resident = Resident.find(params[:resident_id])
+  	@donor = @resident.donors
     @status = Status.new(status_params)
     if @status.save
+      UserMailer.send_status_email(@donor, @status, @resident)
       redirect_to residents_path
     else
       render 'new'
