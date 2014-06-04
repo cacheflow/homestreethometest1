@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require rails_bootstrap_forms
  */
 
  /* I am testing some git hub merging type stuff. This is the file I modified. If you come 
