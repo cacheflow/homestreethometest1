@@ -1,35 +1,34 @@
 <h2>Sign up</h2>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.label :role %>
-  <%= f.collection_select :role_id, Role.all, :id, :name %>
+          <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>      
+          <%= f.collection_select :role_id, Role.all, :id, :name %>
+          <div id = "user" class="form-group">
+              <%= f.email_field :email, autofocus: true, prepend: link_to(" ", "#", class: "glyphicon glyphicon-envelope") %>
+              </div>
+            <div class="form-group">            
+                <%= f.password_field :password, autocomplete: "off", prepend: link_to(" ", "#", class: "glyphicon glyphicon-lock") %>   
+            </div>
+            <div class="form-group"> 
+                <%= f.password_field :password_confirmation, autocomplete: "off", prepend: link_to(" ", "#", class: "glyphicon glyphicon-lock") %>
+            </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+            <div><%= f.submit "Sign up",  class: "btn btn-sm btn-primary btn-block"%></div>
+            <br />
+            <%= render "devise/shared/links" %>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+            <% end %>
+          </div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-<<<<<<< HEAD
-  <div><%= f.submit "Sign up", class: "btn btn-lg btn-success" %></div>
-=======
-  <div><%= f.submit "Sign up",  class: "btn btn-lg btn-success"%></div>
->>>>>>> melabranch
-<% end %>
-
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<%= render "devise/shared/links" %>
+
