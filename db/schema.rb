@@ -44,17 +44,6 @@ ActiveRecord::Schema.define(version: 20140602231439) do
   add_index "donors", ["donations_id"], name: "index_donors_on_donations_id", using: :btree
   add_index "donors", ["resident_id"], name: "index_donors_on_resident_id", using: :btree
 
-  create_table "fulfillments", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_hash"
-    t.integer  "amount"
-    t.string   "wepay_access_token"
-    t.integer  "wepay_account_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "partners", force: true do |t|
     t.string   "org"
     t.string   "address"
