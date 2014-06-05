@@ -9,8 +9,7 @@ class PartnersController < ApplicationController
 
   def create
     @partner = Partner.new(partner_params)
-    puts @partner.inspect  ## See which record @user is referring to, check if it has an avatar
-    Visit.track(@partner, request.remote_ip)
+
     if @partner.save
       respond_to do |format|
         format.html {UserMailer.welcome_email(@partner).deliver

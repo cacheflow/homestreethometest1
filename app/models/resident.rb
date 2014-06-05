@@ -10,6 +10,7 @@ class Resident < ActiveRecord::Base
   has_attached_file :image, 
             :style => { 
             :medium => "300x300>", :thumb => "100x100>" },
+            :default_url => 'http://s3.amazonaws.com/resident_profile_hsh/residents/images/000/000/011/original/tiny_potatospiration.jpg?1402009238',
             :storage => :s3
             
 

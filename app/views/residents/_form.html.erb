@@ -8,7 +8,7 @@
 	  <%= f.label :image %><br />
 	  <%= f.file_field :image %>
     </div>
-	<div class = "smallerform"><%= f.submit %></div>
+	
 	<%= f.hidden_field :user_id, :value => current_user.id %><br />
 	<%= f.submit %>
 
