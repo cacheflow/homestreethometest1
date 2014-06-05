@@ -1,15 +1,31 @@
 <div ng-app="resident-app" class="container">
 
-  <h1>Residents</h1>
 
   <div ng-controller="ResidentCtrl">
 
-   	<ul>
-      <li ng-repeat="resident in residents ">
-      
-        {{resident.name}}-- {{resident.bio}} 
-      </li>
-    </ul>
+
+
+      <div ng-repeat="resident in residents ">
+        <div class="col-xs-18 col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <img src="https://scontent-a-lax.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/1239593_10203505701587493_274258297_n.jpg?oh=7b1c5f0d457eeabf910ea084127d94a4&oe=5405112F" alt="">
+              
+              <div class="caption">
+                <h4>{{resident.name}}</h4>
+                <p>{{resident.goals}}</p>
+                
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    <span class="sr-only">40% Complete (success)</span>
+                      <p>Donations</p>
+                      </div>
+                       </div>
+
+                <p class="span7 text-center"><a href="residents/{{resident.id}}" class="btn btn-info btn-med" role="button">Learn more</a></p>
+            </div>
+          </div>
+   
+
    
 
   </div>
