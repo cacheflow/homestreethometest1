@@ -6,8 +6,8 @@
   <div ng-controller="ResidentCtrl">
 
 
- 
-      <div ng-repeat="resident in residents | limitTo:8">
+<div style="height:600px;overflow:auto;" when-scrolled="loadMore()"> 
+      <div ng-repeat="resident in residents | limitTo:numdisplay">
         <div class="col-xs-18 col-sm-6 col-md-3">
           <div class="thumbnail">
             <img src="https://scontent-a-lax.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/1239593_10203505701587493_274258297_n.jpg?oh=7b1c5f0d457eeabf910ea084127d94a4&oe=5405112F" alt="">
@@ -36,5 +36,6 @@
             </div>
           </div>
   </div>
+</div>
 </div>
 

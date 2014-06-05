@@ -17,12 +17,15 @@ residentApp.factory('Resident', ['$resource', function($resource) {
 
 residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, Resident) {
     $scope.residents= [];
-    $scope.pageSize = 8;
-    $scope.numberOfPages = function(){
-        return Math.ceil($scope.data.length/$scope.pageSize);                
-    }
+    $scope.numdisplay = 8;
+    $scope.counter = 0;
+    console.log('logging')
+    $scope.loadMore = function() {
+        $scope.numdisplay +=4;
+        console.log($scope.numdisplay)    
+    };
+    
 
-  
 
 
     Resident.query(function(residents) {
@@ -46,6 +49,16 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
       return percentofgoal
     }
 
-
-
    }])
+
+residentApp.directive('whenScrolled', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+        
+        elm.bind('scroll', function() {
+            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                scope.$apply(attr.whenScrolled);
+            }
+        });
+    };
+});
