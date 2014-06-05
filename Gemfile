@@ -33,6 +33,9 @@ gem 'active_model_serializers'
 
 gem 'angularjs-rails'
 
+gem 'paperclip'
+gem 'aws-sdk'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
