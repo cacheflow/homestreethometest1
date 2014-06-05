@@ -5,7 +5,8 @@
 	<% end %>
 <br></br>
 
-<%= @resident.name %> <%= @resident.bio %><br />
+<%= @resident.name %> <%= @resident.bio %> <%= image_tag @resident.image.url %><br />
+
 
 Has raised $<%= @resident.total_donations %> through <%= @resident.donations.count %> donations
 <br></br>

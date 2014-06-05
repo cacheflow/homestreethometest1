@@ -7,6 +7,8 @@ class ResidentsController < ApplicationController
 
   def create
     @resident = Resident.new(resident_params)
+    puts @resident.inspect  ## See which record @user is referring to, check if it has an avatar
+    Visit.track(@resident, request.remote_ip)
     if @resident.save 
       respond_to do |format|
         format.html {redirect_to residents_path}
@@ -51,6 +53,6 @@ class ResidentsController < ApplicationController
 
  
   def resident_params
-    params.require(:resident).permit(:name, :bio, :goals, :partner_id, :picture, :user_id, :goal_monetary)
+    params.require(:resident).permit(:name, :bio, :goals, :partner_id, :image, :user_id, :goal_monetary)
   end
 end
