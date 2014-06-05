@@ -8,6 +8,6 @@ class Resident < ActiveRecord::Base
   validates_presence_of :name, :bio, :goals
 
   def total_donations
-  	donations.sum(&:amount)
+  	return donations.sum(&:amount)
   end
 end

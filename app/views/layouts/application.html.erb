@@ -19,7 +19,7 @@
       <% elsif current_user.role_id == 3 && Partner.where(:user_id => current_user.id)[0] != nil%> 
         <li><%= link_to 'Edit Profile', edit_partner_path(Partner.where(:user_id => current_user.id)[0]) %></li>
       <% elsif current_user.role_id == 2 && Resident.where(:user_id => current_user.id)[0] == nil%> 
-        <li><strong> <%= link_to 'Create Profile', new_resident_path %></strong></li>
+        <li><%= link_to 'Create Profile', new_resident_path %></li>
       <% elsif current_user.role_id == 2 && Resident.where(:user_id => current_user.id)[0] != nil%> 
         <li><%= link_to 'Edit Profile', edit_resident_path(Resident.where(:user_id => current_user.id)[0]) %></li>
         <% elsif current_user.role_id == 1 && Donor.where(:user_id => current_user.id)[0] == nil%> 
