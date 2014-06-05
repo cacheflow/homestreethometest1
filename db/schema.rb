@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605022914) do
+ActiveRecord::Schema.define(version: 20140605210357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140605022914) do
   create_table "partners", force: true do |t|
     t.string   "org"
     t.string   "address"
-    t.integer  "phone",       limit: 8
+    t.integer  "phone",              limit: 8
     t.string   "email"
     t.string   "website"
     t.integer  "resident_id"
@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 20140605022914) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "name"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "partners", ["resident_id"], name: "index_partners_on_resident_id", using: :btree

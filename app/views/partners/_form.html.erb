@@ -5,6 +5,10 @@
 	Phone <%= f.text_field :phone %><br />
 	Email <%= f.text_field :email, :value => current_user.email %><br />
 	Website <%= f.text_field :website %><br />
+	<div class="field">
+	  <%= f.label :image %><br />
+	  <%= f.file_field :image %>
+    </div>
 	<%= f.hidden_field :user_id, :value => current_user.id %><br />
 	<%= f.submit %>
 

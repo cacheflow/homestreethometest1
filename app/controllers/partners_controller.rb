@@ -9,6 +9,8 @@ class PartnersController < ApplicationController
 
   def create
     @partner = Partner.new(partner_params)
+    puts @partner.inspect  ## See which record @user is referring to, check if it has an avatar
+    Visit.track(@partner, request.remote_ip)
     if @partner.save
       respond_to do |format|
         format.html {UserMailer.welcome_email(@partner).deliver
@@ -55,6 +57,6 @@ class PartnersController < ApplicationController
     respond_with @partner
   end
   def partner_params
-    params.require(:partner).permit(:name, :org, :address, :phone, :email, :website, :user_id, :resident_id)
+    params.require(:partner).permit(:name, :org, :address, :phone, :email, :website, :user_id, :image, :resident_id)
   end
 end
