@@ -18,6 +18,6 @@ class Resident < ActiveRecord::Base
 
 
   def total_donations
-  	donations.sum(&:amount)
+  	return donations.sum(&:amount)
   end
 end

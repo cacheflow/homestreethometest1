@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+
 
 <div class="container">
   <div class="row">
@@ -7,22 +7,42 @@
         <div class="panel-body">
 
           <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= devise_error_messages! %>      
+          <%= devise_error_messages! %> 
+          <% if request.fullpath.include?('user_sign_up') %>     
           <%= f.collection_select :role_id, Role.all, :id, :name %>
-          <div id = "user" class="form-group">
-              <%= f.email_field :email, autofocus: true, prepend: link_to(" ", "#", class: "glyphicon glyphicon-envelope") %>
-              </div>
-            <div class="form-group">            
-                <%= f.password_field :password, autocomplete: "off", prepend: link_to(" ", "#", class: "glyphicon glyphicon-lock") %>   
+          <% else %>
+          <%= f.hidden_field :role_id, :value => 1 %>
+          <% end %>
+            <div id = "user" class="form-group">
+              <%= f.email_field :email, autofocus: true, prepend: label_tag(" ", "", class: "glyphicon glyphicon-envelope") %>
             </div>
+           
+            <div class="form-group">      
+                <%= f.password_field :password, autocomplete: "off", prepend: label_tag(" ","", class: "glyphicon glyphicon-lock")%>  
+            </div>
+
             <div class="form-group"> 
-                <%= f.password_field :password_confirmation, autocomplete: "off", prepend: link_to(" ", "#", class: "glyphicon glyphicon-lock") %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", prepend: label_tag(" ", "", class: "glyphicon glyphicon-lock") %>
             </div>
+
+            <% unless request.fullpath.include?('user_sign_up') %> 
+              <%= f.fields_for :donor do |ff| %>
+                <div>
+                  <%= ff.text_field :name, placeholder: 'optional' %>
+                  <%= ff.text_field :phone, placeholder: 'optional' %>
+                  <%= ff.text_field :org, label: 'Organization', placeholder: 'optional' %>
+                  <%= ff.check_box :email_updates %>
+                  <%= ff.check_box :phone_updates %>
+                </div>
+              <% end %>
+            <% end %>
 
             <div><%= f.submit "Sign up",  class: "btn btn-sm btn-primary btn-block"%></div>
             <br />
             <%= render "devise/shared/links" %>
-
+            <% unless request.fullpath.include?('user_sign_up') %> 
+            <%= link_to 'Want to sign up as a partner or homeful?', new_donor_user_registration_path%>
+            <% end %>
             <% end %>
           </div>
 

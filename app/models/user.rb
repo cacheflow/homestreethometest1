@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
   has_many :partners
-  has_many :donors
+  has_one :donor
+  accepts_nested_attributes_for :donor
   has_many :residents
+
+  def donor
+    super || build_donor
+  end
+
 end
