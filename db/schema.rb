@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602231439) do
+ActiveRecord::Schema.define(version: 20140605022914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20140602231439) do
   add_index "donors", ["donations_id"], name: "index_donors_on_donations_id", using: :btree
   add_index "donors", ["resident_id"], name: "index_donors_on_resident_id", using: :btree
 
+  create_table "fulfillments", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_hash"
+    t.integer  "amount"
+    t.string   "wepay_access_token"
+    t.integer  "wepay_account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "partners", force: true do |t|
     t.string   "org"
     t.string   "address"
@@ -72,6 +83,10 @@ ActiveRecord::Schema.define(version: 20140602231439) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "residents", ["donors_id"], name: "index_residents_on_donors_id", using: :btree

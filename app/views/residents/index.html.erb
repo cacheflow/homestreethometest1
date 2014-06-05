@@ -1,6 +1,7 @@
 <% if can? :create, Resident %>
 		<%= link_to 'New Resident', new_resident_path %>
 <% end %>
+<div>
 <br></br>
 <% @residents.each do |p| %>
 	<ul>

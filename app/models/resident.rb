@@ -7,6 +7,16 @@ class Resident < ActiveRecord::Base
   validates_format_of :name, with: /\A[a-zA-Z]{1,}\s[a-zA-Z]{1,}/
   validates_presence_of :name, :bio, :goals
 
+  has_attached_file :image, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
+  # Validate the attached image is image/jpg, image/png, etc
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+
   def total_donations
   	donations.sum(&:amount)
   end
