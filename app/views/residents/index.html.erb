@@ -1,15 +1,211 @@
   <!DOCTYPE html>
-  <html>
-  <head>
-    <title>Members Page</title>
+    <html>
+    <head>
+      <title>Home Street Home</title>
+       <meta charset="utf-8">
+    <title>Components &middot; Home Street Home Free</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-      
-  </head>
-  <body>
-  
-  
-  <nav class="navbar navbar-default" role="navigation">
+    <link href="flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="flat/bootstrap/css/prettify.css" rel="stylesheet">
+
+    <!--  Flat UI -->
+    <link href="flat/flat-ui.css" rel="stylesheet">
+    <link href="flat/flat-ui-css/docs.css" rel="stylesheet">
+
+
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//unslider.com/unslider.min.js"></script>
+
+
+
+
+
+
+
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,400italic);
+        @import url(http://fonts.googleapis.com/css?family=Lato);
+          font-family: 'Open Sans', sans-serif;
+
+        html {
+          font-family: 'Open Sans', sans-serif;
+}
+
+        .btn btn-default btn-xs {
+          padding: 10px;
+        }
+
+        body {
+          max-width: 100%;
+          height: 2000px;
+          font-family: 'Open Sans', sans-serif;
+}
+
+
+.img-responsive {
+	height: 700px;
+	width: 100%;
+  position: relative;  
+}
+
+ul{
+	padding: 0px;
+}
+
+
+
+
+ .big-image { position: relative; 
+ 	overflow: hidden; 
+ 	width: 100%;
+ 	height: 400;
+ }
+    .big-image li { list-style: 
+    	none; 
+
+    }
+  .big-image ul li { float: 
+        	left; 
+        }
+        
+.navbar-header {
+padding-top: -10px;
+
+}
+
+.work {
+  color: #34495e;
+  font-size: 26px;
+}
+        
+        
+.login {
+margin-left: 30px;
+
+} 
+
+.signup {
+margin-left: 500px;
+
+}        
+        
+#main {
+color: #2980b9;
+
+
+}        
+
+
+.greybox {
+background-color: #F9F9F9;
+height: 350px; 
+width: 61px; 
+width border-top: 1px solid #ddd;
+border-bottom: 1px solid #ddd;
+margin-top: 180px;
+
+
+width: 100%;
+float: left;
+
+
+}
+
+h2, h3, h4 {
+color: #E74C3C
+;
+
+
+}
+
+.member-image, .profile-image, .donation-image {
+width: 50px;
+
+
+}
+
+.donate, .profile {
+  margin-right: 30px;
+}
+
+
+.member {
+float: left;
+clear: inherit;
+padding-top: 70px;
+margin: 30px;
+}
+
+.donation{
+  float: left;
+clear: inherit;
+padding-top: 70px;
+margin: 50px;
+
+}
+
+.profile{
+  float: left;
+clear: inherit;
+padding-top: 70px;
+margin-right: 30px;
+margin: 70px;
+
+}
+
+h3 p {
+text-align: center;
+
+}
+
+.directly{
+  margin-top: 20px;
+  margin-top: 100px;
+margin-left: 340px;
+}
+
+.description {
+  font-family: 'Lato'; 
+  font-size: 18px;
+  margin-top: 200px;
+  margin-right: 100px;
+  margin-left: 380px;
+  position: relative;
+
+}
+
+.percent{
+  margin-right: 200px;
+  margin-left: 340px;
+  font-weight: bold;
+  color: #847F74;
+}
+ 
+
+     
+
+
+ .pictext{
+  position: absolute;
+  color: white;
+  top: 200%;
+   font: bold 24px/45px, "Lato" Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+      padding: 10px; 
+
+ }
+        
+
+      </style>
+    </head>
+   
+<body> 
+
+<nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
       <span class="sr-only">Toggle navigation</span>
@@ -22,112 +218,143 @@
       <li class="active"><a href="#fakelink">How it works</a></li>
       <li><a href="members.html">Members</a></li>
 
-        <li class = "signup"><%= link_to "Sign up", new_user_registration_path %> </li>
+        <li class = "signup"><a href="signup.html"> Sign up </a> </li>
         <li class = "login"> <a href="#"> Login </a></li>
         
     </ul>      
     </div> 
     </nav>
     </div>
+      <h2 class = "directly">Directly fund a homeless neighbor in need. </h2> 
+
+      <div class = "percent">
+      <p>100% of your donation goes directly toward basics like food, clothing, and medical care.</p>
+      </div>
+    
 
 
-  <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-          <span class="input-group-btn">
-            <button type="submit" class="btn"><span class="fui-search"></span></button>
-          </span>            
-        </div>
-      </div>               
-    </form>
-  </div><!-- /.navbar-collapse -->
-</nav><!-- /navbar --> 
-      <div class="row">
+
+  <div class="big-image">
+
+  <ul>
+   
         
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="https://scontent-a-lax.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/1239593_10203505701587493_274258297_n.jpg?oh=7b1c5f0d457eeabf910ea084127d94a4&oe=5405112F" alt="">
-              
-              <div class="caption">
-                <h4>Biography</h4>
-                <p>This is the story of Lex and his trials of living on the streets</p>
-                
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                    <span class="sr-only">40% Complete (success)</span>
-                      <p>Donations</p>
-                      </div>
-                       </div>
+        <li> <img class="img-responsive" src="http://reportinginnyc.files.wordpress.com/2011/01/homeless.jpg" />
 
-                <p><a href="#" class="btn btn-info btn-xs" role="button">Follow his story</a> <a href="timeline.html" class="btn btn-default btn-xs" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
+ <h3 class = "pictext">Directly fund a homeless neighbor in need.</h3>
 
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          
-          <div class="thumbnail">
-            <img src="https://scontent-a-lax.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/1239593_10203505701587493_274258297_n.jpg?oh=7b1c5f0d457eeabf910ea084127d94a4&oe=5405112F" alt="">
-              
-              <div class="caption">
-                <h4>Biography</h4>
-                <p>This is the story of Lex and his trials of living on the streets</p>
 
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                    <span class="sr-only">40% Complete (success)</span>
-                      <p>Donations</p>
-                      </div>
-                      </div>
+	<li> 
 
-                <p><a href="#" class="btn btn-info btn-xs" role="button">Follow his story</a> <a href="timeline.html" class="btn btn-default btn-xs" role="button">Donate</a></p>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          
-          <div class="thumbnail">
-            <img src="https://scontent-a-lax.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/1239593_10203505701587493_274258297_n.jpg?oh=7b1c5f0d457eeabf910ea084127d94a4&oe=5405112F" alt="">
-              <div class="caption">
-                <h4>Biography</h4>
+  <img class="img-responsive" src="http://omarcgarcia.files.wordpress.com/2013/06/allens-landing-homeless.jpg
+" />
 
-                <p>This is the story of Lex and his trials of living on the streets</p>
+<h3 class = "pictext">100% of your donation goes directly toward basics like food, clothing, and medical care.</h3>
+ 	
 
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                    <span class="sr-only">40% Complete (success)</span>
-                      <p>Donations</p>
-                      </div>
-              </div>
+	</li>
 
-                <p><a href="#" class="btn btn-info btn-xs" role="button">Follow his story</a> <a href="timeline.html" class="btn btn-default btn-xs" role="button">Donate</a></p>
 
-            </div>
-          </div>
-        </div>
+	  
 
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="https://scontent-a-lax.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/1239593_10203505701587493_274258297_n.jpg?oh=7b1c5f0d457eeabf910ea084127d94a4&oe=5405112F" alt="">
-              <div class="caption">
-                <h4>Biography</h4>
-                <p>This is the story of Lex and his trials of living on the streets</p>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                    <span class="sr-only">40% Complete (success)</span>
-                      <p>Donations</p>
-                      </div>
-              </div>
-                <p><a href="#" class="btn btn-info btn-xs" role="button">Follow his story</a> <a href="timeline.html" class="btn btn-default btn-xs" role="button">Donate</a></p>
-            </div>
-          </div>
-        </div>
+
+	  <li>
+	  	<img class = "img-responsive"  src="http://i.imgur.com/NZf0Qwm.png">
+	  		  <h3 class = "pictext">Help today and change someone's life</h3>	
+
+
+	  </li>
+
+       
+
+      </ul>
         
-      </div><!-- End row -->
+  </div>
+
+
+    
+
+  <div class = "description">
+     <div class = "work"> How Does Home Street Home Work? </div> </br> </br> Home Street Home is direct giving for homeless people and others in need in your neighborhood. </br> Your donations are redeemed for basic needs like food, clothing, and medical care through our </br> partner organizations.  
+    
+    </p>
+    </div>
+
+
+<div class = "greybox"> 
+      <div class = "member"> 
+
+      <img class = "member-image" src="https://handup.us/static/img/profile.png">
+
+    
+      <h3>Find a member</h3>
+      <p>Learn about the stories and needs of our </br>
+      members by browsing their profiles </p>
+
       
-    </div><!-- End container -->
 
 
-  </body>
-  </html>
+
+  </div>
+ 
+<div class = "profile"> 
+
+  <img class = "profile-image" src="https://handup.us/static/img/profile.png">
+
+
+  <h3>Donate to a member</h3>
+    <p>You can pledge to help a specific member.</p>
+
+
+
+  </div>
+
+<div class = "donation"> 
+
+      <img class = "donation-image" src="https://handup.us/static/img/profile.png">
+
+    <h3>See your donation at work</h3>
+      <p>100% of your donation goes directly to the members HandUp account </p>
+
+    
+
+
+
+</div> 
+
+    <script type="text/javascript">
+	
+$(document).ready(function(){
+                                $('.big-image').unslider({
+                                        speed: 500,               
+                                        delay: 3000,              
+                                        keys: true,               
+                                        dots: false,              
+                                        fluid: false             
+                                }),
+
+
+
+
+                       
+
+
+$(function() {
+    
+    $("<h4 class = 'pictext'>Directly fund a homeless neighbor in need.>")
+        .before("<li>")
+
+    
+
+})
+ });
+
+
+</script>
+      
+
+
+    </body>
+
+    </html>    

@@ -1,39 +1,62 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-body">
-        		<h3>Sign in</h3>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<div id = "user" class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-  <%= f.email_field :email, autofocus: true %>
-            </div>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+			<span class="sr-only">Toggle navigation</span>
+		</button>
+		
+		<a class="navbar-brand" id = "main" href="#">Home Street Home</a> 
+	</div>
+	<div class="collapse navbar-collapse" id="navbar-collapse-01">
+		<ul class="nav navbar-nav">           
+			<li class="active"><a href="#fakelink">How it works</a></li>
+			<li><a href="members.html">Members</a></li>
 
-
-<div id = "user" class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-    <%= f.password_field :password, autocomplete: "off" %></div>
-            </div>
-
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-    </div>
-  <% end -%>
-
-  <div style = "width: 100px"><%= f.submit "Sign in", class: "btn btn-sm btn-primary btn-block" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
+			<li class = "signup"><a href="#"> Sign up </a> </li>
+			<li class = "login"> <a href="#"> Login </a></li>
+			
+		</ul>      
+	</div> 
+</nav>
 </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h3>Sign in</h3>
+
+					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					<div id = "user" class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+							<%= f.email_field :email, autofocus: true %>
+						</div>
+
+
+						<div id = "user" class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+								<%= f.password_field :password, autocomplete: "off" %></div>
+							</div>
+
+
+							<% if devise_mapping.rememberable? -%>
+							<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+						</div>
+						<% end -%>
+
+						<div style = "width: 100px"><%= f.submit "Sign in", class: "btn btn-sm btn-primary btn-block" %></div>
+						<% end %>
+
+						<%= render "devise/shared/links" %>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
