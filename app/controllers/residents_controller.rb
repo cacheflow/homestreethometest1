@@ -38,6 +38,6 @@ class ResidentsController < ApplicationController
 
  
   def resident_params
-    params.require(:resident).permit(:name, :bio, :goals, :partner_id, :image, :user_id)
+    params.require(:resident).permit(:name, :bio, :goals, :partner_id, :image, :user_id, :goal_monetary)
   end
 end
