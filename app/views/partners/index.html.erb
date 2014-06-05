@@ -5,7 +5,7 @@
 
      <div class="form-group">
 
-        <input ng-model="searchPartner" type="text" class="form-control">
+        <input ng-model="searchPartner" type="text" class="form-control" placeholder="search partners">
           {{ searchPartner}}
       </div>
     <table class="table">
@@ -23,6 +23,10 @@
             <dd>{{partner.organization}}</dd>
             <dt>Address:</dt>
             <dd>{{partner.address}}</dd>
+            <dt>Residents:</dt>
+            <ul>
+              <li ng-repeat="resident in partner.residents">{{resident.name}}</li>
+            </ul>
 
             
 
