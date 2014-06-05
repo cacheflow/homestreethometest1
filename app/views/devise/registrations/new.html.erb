@@ -22,6 +22,15 @@
             <div class="form-group"> 
                 <%= f.password_field :password_confirmation, autocomplete: "off", prepend: link_to(" ", "#", class: "glyphicon glyphicon-lock") %>
             </div>
+            <% unless request.fullpath.include?('user_sign_up') %> 
+              <%= f.fields_for :donor do |ff| %>
+                <div>
+                  <%= ff.text_field :name %>
+                  <%= ff.check_box :email_updates %>
+                  <%= ff.check_box :phone_updates %>
+                </div>
+              <% end %>
+            <% end %>
 
             <div><%= f.submit "Sign up",  class: "btn btn-sm btn-primary btn-block"%></div>
             <br />
