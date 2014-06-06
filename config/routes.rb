@@ -9,9 +9,6 @@ Homestreetapp::Application.routes.draw do
   end
   resources :donors do
     resources :donations
-    resources :residents do
-      resources :statuses
-    end
   end
   devise_scope :user do 
     get '/users/user_sign_up', to: 'devise/registrations#new', as:'new_donor_user_registration'
