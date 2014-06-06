@@ -1,5 +1,6 @@
 Homestreetapp::Application.routes.draw do
-  root to: "residents#index"
+  get "welcome/index"
+  root "welcome#index"
   devise_for :users
   resources :partners
   resources :residents do
