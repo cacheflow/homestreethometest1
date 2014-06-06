@@ -46,7 +46,7 @@ class PartnersController < ApplicationController
   end
 
   def index
-    @partners = Partner.all
+    @partners = PartnerReporting.find_by_sql('SELECT partners.id, partners.name, partners.org, partners.email, partners.address, SUM(amount), AVG(amount), MAX(amount), MIN(amount), COUNT(donations.id) FROM "donations" RIGHT OUTER JOIN residents ON "donations"."resident_id" = "residents"."id" RIGHT OUTER JOIN "partners" ON "residents"."partner_id" = partners.id GROUP BY partners.name, partners.id, partners.org, partners.email, partners.address')
     respond_with @partners
   end
 

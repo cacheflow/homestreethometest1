@@ -1,8 +1,13 @@
 <div ng-app="partner-app" class="container">
-  <h1>Partners</h1>
+
 
   <div ng-controller="PartnerCtrl">
+    <button type="button" class="btn btn-lg btn-primary" bs-aside="leftaside"> Dashboard
+    </button>
+    <button type="button" class="btn btn-lg btn-danger" data-template="aside-detail" data-placement="left" data-animation="am-slide-left" bs-aside="aside" data-container="body">Custom aside
+    </button>
 
+    <h2> Partners </h2>
      <div class="form-group">
 
         <input ng-model="searchPartner" type="text" class="form-control" placeholder="search partners">
@@ -21,6 +26,8 @@
             <dd>{{partner.email}}</dd>
             <dt>Organization:</dt>
             <dd>{{partner.organization}}</dd>
+            <dt>Total Donations Collected:</dt>
+            <dd>${{partner.sum}}</dd>
             <dt>Address:</dt>
             <dd>{{partner.address}}</dd>
             <dt>Residents:</dt>
