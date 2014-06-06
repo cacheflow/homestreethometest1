@@ -19,19 +19,27 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
     $scope.residents= [];
     $scope.numdisplay = 8;
     $scope.counter = 0;
+    $scope.ressyID = 0;
+    $scope.randomnum = 4;
+    Resident.query(function(residents) {
+      $scope.residents = residents;
+    });
+
     console.log('logging')
     $scope.loadMore = function() {
         $scope.numdisplay +=4;
         console.log($scope.numdisplay)    
     };
-    
+    $scope.returnRes = function(){
+        currentUrl = location.href;
+        $scope.ressyID = parseInt(currentUrl.split("/").pop())
+        console.log($scope.ressyID)
+    }
+    $scope.returnRes();
 
 
 
-    Resident.query(function(residents) {
-      $scope.residents = residents;
-    });
-
+ 
     $scope.calcTotal = function(r){
       var totaldonation = 0;
       for( i=0; i<r.donations.length; i++){

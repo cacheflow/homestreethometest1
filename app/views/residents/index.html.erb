@@ -1,12 +1,12 @@
 <div ng-app="resident-app" class="container">
 
-<h1 class="span7 text-center">Residentially Challenged </h1>
+<h1 class="text-center">Residentially Challenged </h1>
 
 
-  <div ng-controller="ResidentCtrl">
+<div ng-controller="ResidentCtrl">
 
 
-<div style="height:400px;overflow:auto;" when-scrolled="loadMore()"> 
+<div style="height:600px;overflow:auto;" when-scrolled="loadMore()"> 
       <div ng-repeat="resident in residents | limitTo:numdisplay">
         <div class="col-xs-18 col-sm-6 col-md-3">
           <div class="thumbnail">
