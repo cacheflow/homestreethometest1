@@ -56,6 +56,6 @@ class PartnersController < ApplicationController
     respond_with @partner
   end
   def partner_params
-    params.require(:partner).permit(:name, :org, :address, :phone, :email, :website, :user_id, :image, :resident_id)
+    params.require(:partner).permit(:name, :org, :address, :phone, :email, :website, :user_id, :image, :resident_id, :donations => [:amount])
   end
 end

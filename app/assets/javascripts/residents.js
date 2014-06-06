@@ -21,6 +21,7 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
     $scope.counter = 0;
     $scope.ressyID = 0;
     $scope.randomnum = 4;
+    $scope.newDonation = 0;
     Resident.query(function(residents) {
       $scope.residents = residents;
     });
@@ -65,6 +66,13 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
       var amtleft = mongoal - totaldonation;
       return amtleft 
 
+    }
+    $scope.saveDonation = function(resident){
+      $scope.newDonation = resident.donations.build;
+        $scope.newDonation.$save(function(resident) {
+        $scope.newDonation = resident.donations.build
+      });
+   
     }
 
 

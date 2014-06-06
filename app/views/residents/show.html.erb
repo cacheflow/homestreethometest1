@@ -27,6 +27,8 @@
                   <p>Donations</p>
                   </div>
                 </div>
+                <input type='text' ng-model="newDonation.amount"><br/>
+                <button class="btn btn-primary" ng-click="saveDonation(resident)">Save</button>
                 <p class="span7 text-center"><a href="/residents/{{resident.id}}/donations/new" class="btn btn-success btn-lg" role="button">Donate</a></p>
 
            </div>
