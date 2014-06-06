@@ -1,45 +1,55 @@
 <div ng-app="resident-app" class="container">
 
-<h1 class="text-center">Residentially Challenged </h1>
-
-
-
 <div ng-controller="ResidentCtrl">
-{{ressyID}}
+	<div class="contianer-fluid">
+
 
       <div ng-repeat="resident in residents| filter:{'id': ressyID}:true">
-        <div class="col-xs-18 col-sm-6 col-md-3">
-
-          <div class="thumbnail">
-            <img src={{resident.image}} alt="">
-
-              <div class="caption">
-                <h4>{{resident.name| limitTo : 20}}</h4>
-
-                <p>{{resident.bio | limitTo : 100}}...</p>
-                <p>${{calcTotal(resident)}} of ${{resident.goal_monetary}} from {{resident.donations.length}} 
+  
+      <div class="col-md-4">
+            <img src={{resident.image}} class="img-responsive img-rounded" alt="">
+       </div>
+      <div class="col-md-8">
+       	  <div class="panel panel-default">
+  			<div class="panel-body text-center" >
+  				<h2>${{calcAmtLeft(resident)}} left to go!</h2>
+                <p>${{calcTotal(resident)}} raised of ${{resident.goal_monetary}} from {{resident.donations.length}} 
                 <ng-pluralize count="resident.donations.length"
                  when="{0: 'donations',
                      1: 'donation',
                      other: 'donations'
                      }">
 				</ng-pluralize> 
-				</p>
+				</h3>
                 
                 <div class="progress">
                   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: {{calcPercent(resident)}}%">
-                
-                      <p>Donations</p>
-                      </div>
-                       </div>
+                  <p>Donations</p>
+                  </div>
+                </div>
+                <p class="span7 text-center"><a href="/residents/{{resident.id}}/donations/new" class="btn btn-success btn-lg" role="button">Donate</a></p>
 
-                <p class="span7 text-center"><a href="residents/{{resident.id}}" class="btn btn-info btn-med" role="button">Learn more</a></p>
-            </div>
+           </div>
           </div>
-  </div>
-</div>
+       </div>
+       <div class="clearfix"></div>
 
-{{ressyID}}
+        <div class="col-md-8">
+       	  <div class="jumbotron">
+       		<h2>{{resident.name}}</h2>
+       		Partner: <h4>{{resident.partner.name}}</h4>
+			Bio:<p>{{resident.bio}}</p>
+			Goals:<p>{{resident.goals}}</p>
+          </div>
+        </div>
+
+           
+       
+
+			</div>
+		</div>
+
+
 </div>
 
 
@@ -87,4 +97,4 @@ Has raised $<%= @resident.total_donations %> through <%= @resident.donations.cou
 			 : <%= s.content %></li>
 		</ul>
 	<% end %>
-<% end %> -->
+<% end %>

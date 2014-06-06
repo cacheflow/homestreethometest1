@@ -56,6 +56,16 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
       var percentofgoal = (totaldonation/mongoal)*100
       return percentofgoal
     }
+    $scope.calcAmtLeft = function(r){
+      var totaldonation = 0;
+      for( i=0; i<r.donations.length; i++){
+        totaldonation = totaldonation + r.donations[i].amount;
+      };
+      var mongoal = parseInt(r.goal_monetary);
+      var amtleft = mongoal - totaldonation;
+      return amtleft 
+
+    }
 
    }])
 
