@@ -6,11 +6,11 @@
   <div ng-controller="ResidentCtrl">
 
 
-<div style="height:400px;overflow:auto;" when-scrolled="loadMore()"> 
+<div style="height:800px;overflow:auto;" when-scrolled="loadMore()"> 
       <div ng-repeat="resident in residents | limitTo:numdisplay">
         <div class="col-xs-18 col-sm-6 col-md-3">
           <div class="thumbnail">
-            <img src={{resident.image}} alt="">
+            <img id="res-index"src={{resident.image}} alt="">
 
               <div class="caption">
                 <h4>{{resident.name| limitTo : 20}}</h4>

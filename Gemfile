@@ -36,6 +36,7 @@ gem 'angularjs-rails'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'twilio-ruby'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
