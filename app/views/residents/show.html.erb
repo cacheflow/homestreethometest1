@@ -32,18 +32,30 @@
            </div>
           </div>
        </div>
-       <div class="clearfix"></div>
 
-        <div class="container-fluid">
-       	  <div class="jumbotron">
-       		<h2>{{resident.name}}</h2>
-       		<p>Partner: {{resident.partnername}} of {{resident.partnerorg}}</p>
-			<p>Bio: {{resident.bio}}</p>
-			<p>Goals: {{resident.goals}}</p>
+       <div class="clearfix"></div>
+		<br></br>
+        <div class="col-md-8">
+       	  <div class="panel panel-default">
+       		<h2 class= "text-center">{{resident.name}}</h2>
+       		<h4>Partner: {{resident.partnername}} of {{resident.partnerorg}}</h4>
+			<h4>Bio: {{resident.bio}}</h4>
+			<h4>Goals: {{resident.goals}}</h4>
           </div>
         </div>
+  
+         <div class="col-md-4">
+       	  <div class="panel panel-default">
+       	  <h3 class="text-center">Updates</h3>
+       	  <div>Thanks for any help you can give me!</div>
+           <div ng-repeat="status in resident.statuses">
+          	{{status.created_at | date : format}}: {{status.content}}
+            </div>
+           </div>
+          </div>
 
-           
+		<ul> 
+	
        
 
 			</div>
@@ -53,48 +65,4 @@
 </div>
 
 
-<!-- <h1> Resident </h1>
 
-<% if can? :edit, @resident %>
-		<%= link_to 'Edit', edit_resident_path(@resident) %>
-	<% end %>
-<br></br>
-
-<%= @resident.name %> <%= @resident.bio %> <%= image_tag @resident.image.url %><br />
-
-
-Has raised $<%= @resident.total_donations %> through <%= @resident.donations.count %> donations
-<br></br>
-<%= link_to 'Donate', new_resident_donation_path(@resident) %>
-<br></br>
-
-<!-- Displays the Status of the RC if they have any -->
-<% if @resident.statuses.count >0 %>
-	<%= link_to 'Statuses', resident_statuses_path(@resident) %> 
-	<% @resident.statuses.each do |s| %>
-		<ul> 
-			<li>
-			<% if Time.new.utc.year == s.created_at.to_s.split(/[^0-9]+/)[0].to_i%>
-			<% if Time.new.utc.month == s.created_at.to_s.split(/[^0-9]+/)[1].to_i %>
-				<% if Time.new.utc.day == s.created_at.to_s.split(/[^0-9]+/)[2].to_i %>
-					<% if Time.new.utc.hour == s.created_at.to_s.split(/[^0-9]+/)[3].to_i %>
-						<% if Time.new.utc.min == s.created_at.to_s.split(/[^0-9]+/)[4].to_i %>
-						a few seconds ago
-						<% else %>
-						<%= Time.new.utc.min - s.created_at.to_s.split(/[^0-9]+/)[4].to_i %> minutes ago
-						<% end %>
-					<% else %>
-						<%= Time.new.utc.hour - s.created_at.to_s.split(/[^0-9]+/)[3].to_i %> hours ago
-					<% end %>
-				<% else %>
-					<%= Time.new.utc.day - s.created_at.to_s.split(/[^0-9]+/)[2].to_i %> days ago
-				<% end %>
-			<% else %> <%= Time.new.utc.month - s.created_at.to_s.split(/[^0-9]+/)[1].to_i %> months ago
-			<% end %>
-		<% else %>
-		<%= Time.new.utc.year - s.created_at.to_s.split(/[^0-9]+/)[0].to_i %> years ago 
-		<% end %>
-			 : <%= s.content %></li>
-		</ul>
-	<% end %>
-<% end %>

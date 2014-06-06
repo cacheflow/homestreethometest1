@@ -67,6 +67,7 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
 
     }
 
+
    }])
 
 residentApp.directive('whenScrolled', function() {
