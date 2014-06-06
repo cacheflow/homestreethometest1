@@ -70,3 +70,5 @@ residentApp.directive('whenScrolled', function() {
         });
     };
 });
+
+
