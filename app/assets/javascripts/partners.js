@@ -23,14 +23,11 @@ partnerApp.controller('PartnerCtrl', ['$scope', 'Partner', function($scope, Part
       $scope.partners = partners;
     });
 
-$scope.leftaside = {
+$scope.aside = {
   "title": "Admin Dashboard",
   "content": "Hello Aside<br />This is a multiline message!"
 };
-$scope.aside = {
-  "title": "Test",
-  "content": "Hello Aside<br />This is a multiline message!"
-};
+// $scope.aside = { template: '/tpl.html'};
 
 $scope.showPartner = function(partner){
       partner.details = true;

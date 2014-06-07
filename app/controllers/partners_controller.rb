@@ -50,6 +50,7 @@ class PartnersController < ApplicationController
     respond_with @partners
   end
 
+
   def show
     @partner = Partner.find(params[:id])
     @residents = @partner.residents
