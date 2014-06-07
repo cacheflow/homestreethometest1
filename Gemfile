@@ -37,6 +37,8 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
 gem 'twilio-ruby'
+gem 'twitter', '~> 5.3.1'
+gem 'oauth', '~> 0.4.7'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
