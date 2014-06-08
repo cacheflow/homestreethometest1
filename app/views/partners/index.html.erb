@@ -1,7 +1,15 @@
+
+
+
 <div ng-app="partner-app" class="container">
-  <h1>Partners</h1>
+
 
   <div ng-controller="PartnerCtrl">
+
+    <button type="button" class="btn btn-lg btn-info" data-template="aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
+    </button>
+
+    <h2> Partners </h2>
 
      <div class="form-group">
 
@@ -9,31 +17,41 @@
           {{ searchPartner}}
       </div>
     <table class="table">
+    <th>Name</th>
+    <th>Organization</th>
+    <th>Total Raised</th>
+    <th>Number Residents</th>
+    <th>Details</th>
+
       <tbody>
       <tr ng-repeat="partner in partners | filter: searchPartner ">
+
         <td>
-        {{partner.name}} of {{partner.org}} 
+        {{partner.name}} 
         <div ng-show="partner.details">
           <dl>
-            <dt>Name</dt>
-            <dd>{{partner.name}}</dd>
-            <dt>Email</dt>
-            <dd>{{partner.email}}</dd>
-            <dt>Organization:</dt>
-            <dd>{{partner.organization}}</dd>
-            <dt>Address:</dt>
-            <dd>{{partner.address}}</dd>
+    
+            <dd>Email: {{partner.email}}</dd>
+           
+            <dd>Number Donations:{{partner.count}}</dd>
+    
+            <dd>Address: {{partner.address}}</dd>
             <dt>Residents:</dt>
             <ul>
-              <li ng-repeat="resident in partner.residents">{{resident.name}}</li>
+              <div ng-repeat="resident in partner.residents">{{resident.name}}</div>
             </ul>
 
             
 
           </dl>
-          </div>
+          </div></td>
+        <td>{{partner.org}} </td>
+
+        
         
         </td>
+        <td>${{partner.sum}}</td>
+        <td>{{partner.residents.length}}</td>
 
 
         <td>
