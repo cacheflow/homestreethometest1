@@ -19,19 +19,28 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
     $scope.residents= [];
     $scope.numdisplay = 8;
     $scope.counter = 0;
+    $scope.ressyID = 0;
+    $scope.randomnum = 4;
+    $scope.newDonation = 0;
+    Resident.query(function(residents) {
+      $scope.residents = residents;
+    });
+
     console.log('logging')
     $scope.loadMore = function() {
         $scope.numdisplay +=4;
         console.log($scope.numdisplay)    
     };
-    
+    $scope.returnRes = function(){
+        currentUrl = location.href;
+        $scope.ressyID = parseInt(currentUrl.split("/").pop())
+        console.log($scope.ressyID)
+    }
+    $scope.returnRes();
 
 
 
-    Resident.query(function(residents) {
-      $scope.residents = residents;
-    });
-
+ 
     $scope.calcTotal = function(r){
       var totaldonation = 0;
       for( i=0; i<r.donations.length; i++){
@@ -48,6 +57,24 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
       var percentofgoal = (totaldonation/mongoal)*100
       return percentofgoal
     }
+    $scope.calcAmtLeft = function(r){
+      var totaldonation = 0;
+      for( i=0; i<r.donations.length; i++){
+        totaldonation = totaldonation + r.donations[i].amount;
+      };
+      var mongoal = parseInt(r.goal_monetary);
+      var amtleft = mongoal - totaldonation;
+      return amtleft 
+
+    }
+    $scope.saveDonation = function(resident){
+      $scope.newDonation = resident.donations.build;
+        $scope.newDonation.$save(function(resident) {
+        $scope.newDonation = resident.donations.build
+      });
+   
+    }
+
 
    }])
 
@@ -62,3 +89,5 @@ residentApp.directive('whenScrolled', function() {
         });
     };
 });
+
+

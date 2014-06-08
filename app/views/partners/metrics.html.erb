@@ -1,0 +1,56 @@
+<div ng-app="partner-app" class="container">
+
+
+  <div ng-controller="PartnerCtrl">
+
+    <button type="button" class="btn btn-lg btn-info" data-template="/aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
+    </button>
+
+    <h2> Amount Raised </h2>
+<div ng-repeat="partner in partners">
+	{{partner.name}}
+	<div class = goalbox><p>${{partner.sum}}</p></div>
+</div>
+    
+  </div>
+</div>
+<button onclick="populateit()">Show me the Money</button><br>
+		<script>
+		function populateit(){
+
+		d3.json("metrics.json", function(error, json) {
+			var raised = [];
+			partnerdata = json;
+	
+			for (i=0; i<partnerdata.length; i++){
+			raised.push(partnerdata[i].sum);
+			};
+			console.log(raised);
+			applyD3Selectors(raised);
+			apple();
+
+
+		});
+		function apple(){
+			console.log('im appling');
+		};
+		
+		function applyD3Selectors(x){
+				// Put D3 magic here
+				console.log('yayy');
+				var raised = x;
+				console.log(raised);
+				
+			d3.selectAll(".goalbox p").style("background-color", function() {
+			  		return "hsl(" + Math.random() * 360 + ",100%,50%)";
+				});
+			d3.selectAll(".goalbox p")
+			    .data(raised)
+			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
+			    .style("width", function(d, i) { return (d) + "px"; });
+			}
+		};
+
+		
+
+		</script>

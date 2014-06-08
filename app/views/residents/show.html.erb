@@ -1,45 +1,70 @@
-<h1> Resident </h1>
+<div ng-app="resident-app" class="container">
 
-<% if can? :edit, @resident %>
-		<%= link_to 'Edit', edit_resident_path(@resident) %>
-	<% end %>
-<br></br>
-
-<%= @resident.name %> <%= @resident.bio %> <%= image_tag @resident.image.url %><br />
+<div ng-controller="ResidentCtrl">
+	<div class="contianer-fluid">
 
 
-Has raised $<%= @resident.total_donations %> through <%= @resident.donations.count %> donations
-<br></br>
-<%= link_to 'Donate', new_resident_donation_path(@resident) %>
-<br></br>
+      <div ng-repeat="resident in residents| filter:{'id': ressyID}:true">
+  
+      <div class="col-md-4">
+            <img src={{resident.image}} class="img-responsive img-rounded" alt="">
+       </div>
+      <div class="col-md-8">
+       	  <div class="panel panel-default">
+  			<div class="panel-body text-center" >
+  				<h2>${{calcAmtLeft(resident)}} left to go!</h2>
+                <p>${{calcTotal(resident)}} raised of ${{resident.goal_monetary}} from {{resident.donations.length}} 
+                <ng-pluralize count="resident.donations.length"
+                 when="{0: 'donations',
+                     1: 'donation',
+                     other: 'donations'
+                     }">
+				</ng-pluralize> 
+				</h3>
+                
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: {{calcPercent(resident)}}%">
+                  <p>Donations</p>
+                  </div>
+                </div>
+                <input type='text' ng-model="newDonation.amount"><br/>
+                <button class="btn btn-primary" ng-click="saveDonation(resident)">Save</button>
+                <p class="span7 text-center"><a href="/residents/{{resident.id}}/donations/new" class="btn btn-success btn-lg" role="button">Donate</a></p>
 
-<!-- Displays the Status of the RC if they have any -->
-<% if @resident.statuses.count >0 %>
-	<%= link_to 'Statuses', resident_statuses_path(@resident) %> 
-	<% @resident.statuses.each do |s| %>
+           </div>
+          </div>
+       </div>
+
+       <div class="clearfix"></div>
+		<br></br>
+        <div class="col-md-8">
+       	  <div class="panel panel-default">
+       		<h2 class= "text-center">{{resident.name}}</h2>
+       		<h4>Partner: {{resident.partnername}} of {{resident.partnerorg}}</h4>
+			<h4>Bio: {{resident.bio}}</h4>
+			<h4>Goals: {{resident.goals}}</h4>
+          </div>
+        </div>
+  
+         <div class="col-md-4">
+       	  <div class="panel panel-default">
+       	  <h3 class="text-center">Updates</h3>
+       	  <div>Thanks for any help you can give me!</div>
+           <div ng-repeat="status in resident.statuses">
+          	{{status.created_at | date : format}}: {{status.content}}
+            </div>
+           </div>
+          </div>
+
 		<ul> 
-			<li>
-			<% if Time.new.utc.year == s.created_at.to_s.split(/[^0-9]+/)[0].to_i%>
-			<% if Time.new.utc.month == s.created_at.to_s.split(/[^0-9]+/)[1].to_i %>
-				<% if Time.new.utc.day == s.created_at.to_s.split(/[^0-9]+/)[2].to_i %>
-					<% if Time.new.utc.hour == s.created_at.to_s.split(/[^0-9]+/)[3].to_i %>
-						<% if Time.new.utc.min == s.created_at.to_s.split(/[^0-9]+/)[4].to_i %>
-						a few seconds ago
-						<% else %>
-						<%= Time.new.utc.min - s.created_at.to_s.split(/[^0-9]+/)[4].to_i %> minutes ago
-						<% end %>
-					<% else %>
-						<%= Time.new.utc.hour - s.created_at.to_s.split(/[^0-9]+/)[3].to_i %> hours ago
-					<% end %>
-				<% else %>
-					<%= Time.new.utc.day - s.created_at.to_s.split(/[^0-9]+/)[2].to_i %> days ago
-				<% end %>
-			<% else %> <%= Time.new.utc.month - s.created_at.to_s.split(/[^0-9]+/)[1].to_i %> months ago
-			<% end %>
-		<% else %>
-		<%= Time.new.utc.year - s.created_at.to_s.split(/[^0-9]+/)[0].to_i %> years ago 
-		<% end %>
-			 : <%= s.content %></li>
-		</ul>
-	<% end %>
-<% end %>
+	
+       
+
+			</div>
+		</div>
+
+
+</div>
+
+
+
