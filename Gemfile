@@ -40,6 +40,7 @@ gem 'twilio-ruby'
 gem 'twitter', '~> 5.3.1'
 gem 'oauth', '~> 0.4.7'
 gem "d3-rails"
+gem 'rails_12factor'
 
 
 group :doc do
