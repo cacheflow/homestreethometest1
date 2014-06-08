@@ -1,5 +1,7 @@
 Homestreetapp::Application.routes.draw do
+  get "metrics/index"
   get "welcome/index"
+  get 'partners/metrics', to: 'partners#metrics'
 
   root "welcome#index"
   devise_for :users
