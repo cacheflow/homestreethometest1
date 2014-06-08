@@ -41,6 +41,7 @@ gem 'twitter', '~> 5.3.1'
 gem 'oauth', '~> 0.4.7'
 gem "d3-rails"
 
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
