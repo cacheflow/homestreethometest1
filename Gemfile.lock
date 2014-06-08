@@ -51,8 +51,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+<<<<<<< HEAD
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    d3-rails (3.4.4)
+      railties (>= 3.1)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -193,6 +196,7 @@ DEPENDENCIES
   bootstrap_form
   cancancan (~> 1.8)
   coffee-rails (~> 4.0.0)
+  d3-rails
   devise
   figaro
   jbuilder (~> 1.2)

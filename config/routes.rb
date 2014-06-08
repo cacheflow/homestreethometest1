@@ -1,5 +1,9 @@
 Homestreetapp::Application.routes.draw do
-  root to: "residents#index"
+  get "metrics/index"
+  get "welcome/index"
+  get 'partners/metrics', to: 'partners#metrics'
+
+  root "welcome#index"
   devise_for :users
   resources :partners
   resources :residents do
@@ -8,15 +12,11 @@ Homestreetapp::Application.routes.draw do
   end
   resources :donors do
     resources :donations
-    resources :residents do
-      resources :statuses
-    end
   end
   devise_scope :user do 
     get '/users/user_sign_up', to: 'devise/registrations#new', as:'new_donor_user_registration'
   end
   
- resources :twilio
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

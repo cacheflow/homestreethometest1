@@ -46,9 +46,15 @@ class PartnersController < ApplicationController
   end
 
   def index
-    @partners = Partner.all
+    @partners = PartnerReporting.find_by_sql('SELECT partners.id, partners.name, partners.org, partners.email, partners.address, SUM(amount), AVG(amount), MAX(amount), MIN(amount), COUNT(donations.id) FROM "donations" RIGHT OUTER JOIN residents ON "donations"."resident_id" = "residents"."id" RIGHT OUTER JOIN "partners" ON "residents"."partner_id" = partners.id GROUP BY partners.name, partners.id, partners.org, partners.email, partners.address')
     respond_with @partners
   end
+
+  def metrics
+    @partners = PartnerReporting.find_by_sql('SELECT partners.id, partners.name, partners.org, partners.email, partners.address, SUM(amount), AVG(amount), MAX(amount), MIN(amount), COUNT(donations.id) FROM "donations" RIGHT OUTER JOIN residents ON "donations"."resident_id" = "residents"."id" RIGHT OUTER JOIN "partners" ON "residents"."partner_id" = partners.id GROUP BY partners.name, partners.id, partners.org, partners.email, partners.address')
+    respond_with @partners
+  end
+
 
   def show
     @partner = Partner.find(params[:id])
@@ -56,6 +62,6 @@ class PartnersController < ApplicationController
     respond_with @partner
   end
   def partner_params
-    params.require(:partner).permit(:name, :org, :address, :phone, :email, :website, :user_id, :image, :resident_id)
+    params.require(:partner).permit(:name, :org, :address, :phone, :email, :website, :user_id, :image, :resident_id, :donations => [:amount])
   end
 end

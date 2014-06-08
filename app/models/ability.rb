@@ -11,9 +11,11 @@ class Ability
         can :read, :all
         can :create, Partner
         can :manage, Partner, :user_id => user.id 
-        can :manage, Resident do |res|
-             @partner = Partner.where(:user_id => user.id)[0]
-             res.partner_id == @partner.id
+        if @partner != nil
+            can :manage, Resident do |res|
+                 @partner = Partner.where(:user_id => user.id)[0]
+                 res.partner_id == @partner.id
+            end
         end
         can :create, Resident
     elsif user.role_id ==2

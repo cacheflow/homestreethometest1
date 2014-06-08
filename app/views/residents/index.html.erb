@@ -1,16 +1,20 @@
 <div ng-app="resident-app" class="container">
 
-<h1 class="span7 text-center">Residentially Challenged </h1>
+<h1 class="text-center">Residentially Challenged </h1>
 
 
-  <div ng-controller="ResidentCtrl">
+<div ng-controller="ResidentCtrl">
 
 
 <div style="height:800px;overflow:auto;" when-scrolled="loadMore()"> 
       <div ng-repeat="resident in residents | limitTo:numdisplay">
         <div class="col-xs-18 col-sm-6 col-md-3">
           <div class="thumbnail">
+
             <img id="res-index"src={{resident.image}} alt="">
+
+            <img src={{resident.image}} alt="">
+
 
               <div class="caption">
                 <h4>{{resident.name| limitTo : 20}}</h4>
@@ -32,7 +36,7 @@
                       </div>
                        </div>
 
-                <p class="span7 text-center"><a href="residents/{{resident.id}}" class="btn btn-info btn-med" role="button">Learn more</a></p>
+                <p class="span7 text-center"><a href="/residents/{{resident.id}}" class="btn btn-info btn-med" role="button">Learn more</a></p>
             </div>
           </div>
   </div>
