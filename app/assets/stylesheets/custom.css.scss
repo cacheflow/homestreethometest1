@@ -33,4 +33,13 @@
     border-color: rgb(40, 94, 142);
     color: rgb(255, 255, 255);
 }
-.form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+.form-signup input[type="text"],.form-signup input[type="password"] {
+    border: 1px solid rgb(50, 118, 177);
+}
+
+.carousel-caption {
+    width: 100%;
+    left: 0%;
+    right: 0%;
+    margin-bottom: -30px;
+}
