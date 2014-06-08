@@ -242,7 +242,7 @@ width: 120px
 <script type='text/javascript'>
   $(document).ready(function() {
        $('.carousel').carousel({
-           interval: 2000
+           interval: 3000
        })
   });    
 </script>
@@ -262,7 +262,7 @@ width: 120px
 <div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
   <div class="carousel-inner">
   <div class="item active"><!-- class of active since it's the first item -->
-      <img src="http://reportinginnyc.files.wordpress.com/2011/01/homeless.jpg" alt="" />
+      <%= image_tag("needhelp.jpg", :alt => "rss feed") %>
       <div class="carousel-caption">
  <p class ="ptext">Directly fund a homeless neighbor in need.</p>
       </div>
@@ -271,7 +271,7 @@ width: 120px
 
     <div class="item">
       
-      <img src="http://omarcgarcia.files.wordpress.com/2013/06/allens-landing-homeless.jpg" alt="" />
+      <%= image_tag("neighbor.jpg", :alt => "rss feed") %>
 
     <div class="carousel-caption">
 
@@ -280,7 +280,7 @@ width: 120px
       </div>
 
     <div class="item">
-      <img src="http://i.imgur.com/NZf0Qwm.png" alt="" />
+      <%= image_tag("bridge.jpg", :alt => "rss feed") %>
       <div class="carousel-caption">
           <p class ="ptext"> Help today and change someone's life</p> 
       </div>
