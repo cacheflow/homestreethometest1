@@ -7,8 +7,7 @@ class ResidentsController < ApplicationController
 
   def create
     @resident = Resident.new(resident_params)
-    puts @resident.inspect  ## See which record @user is referring to, check if it has an avatar
-    Visit.track(@resident, request.remote_ip)
+
     if @resident.save 
       respond_to do |format|
         format.html {redirect_to residents_path}
