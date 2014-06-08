@@ -1,5 +1,10 @@
 @import 'bootstrap';
 
+#res-index {
+	height:240px;
+    overflow: hidden;
+}
+
 .progress{
       height: 18px;
     }
@@ -12,6 +17,9 @@
 
 }
 
+#twitter-link {
+    margin-top: 15px;
+}
 
 .input-group-addon
 {

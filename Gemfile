@@ -36,6 +36,11 @@ gem 'angularjs-rails'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'twilio-ruby'
+gem 'twitter', '~> 5.3.1'
+gem 'oauth', '~> 0.4.7'
+
+gem "d3-rails"
 
 gem "d3-rails"
 
