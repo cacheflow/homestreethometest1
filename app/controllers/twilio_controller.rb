@@ -14,7 +14,7 @@ class TwilioController < ApplicationController
      
     @client.account.messages.create({
       :from => '+16513199035', 
-      :to => '6518943894',
+      :to => '',
       :body => 'New Sad making things happen!'
       })
   end

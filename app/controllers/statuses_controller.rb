@@ -17,7 +17,7 @@ class StatusesController < ApplicationController
     if @status.save
       UserMailer.send_status_email(@donor, @status, @resident)
       text_updates(@status.content, @donor)
-      twitter_update
+      twitter_update(@resident.name, @status.content)
       redirect_to residents_path
     else
       render 'new'
@@ -62,21 +62,20 @@ class StatusesController < ApplicationController
     end
   end
 
-  def twitter_update
-    puts "is this working"
-    consumer_key = OAuth::Consumer.new(
-      "JGAZVgMigbhmp1WJ7Tj8e2ZRk",
-      "hNq06ljAW8TsZ8wudIVpbQOo3OY8mJjgQH8giVPuQfcXJRS4WG")
-    access_token = OAuth::Token.new(
-      "2551746222-GxYCa53zecd2Pgg54ZYiTG2WmCGGZ6vSuMHP7G5",
-      "T7XHLnP4I1NsxJY2bqjOLle5byWztBjBPvIzvFHHsPEML")
+  def twitter_update(name, tweet)
+    @name = name
+    @tweet = tweet
+    consumer_key = OAuth::Consumer.new(ENV["TWITTER_CONSUMER_KEY"],
+      ENV["TWITTER_CONSUMER_SECRET"])
+    access_token = OAuth::Token.new(ENV["TWITTER_ACCESS_TOKEN"],
+      ENV["TWITTER_ACCESS_SECRET"])
 
     baseurl = "https://api.twitter.com"
     path    = "/1.1/statuses/update.json"
     address = URI("#{baseurl}#{path}")
     request = Net::HTTP::Post.new address.request_uri
     request.set_form_data(
-      "status" => "HomeStreetHome will be debuting its live application on Monday! Wish us luck!",
+      "status" => "#{@name.titleize}: #{@tweet}",
     )
 
     http             = Net::HTTP.new address.host, address.port
