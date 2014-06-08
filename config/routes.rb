@@ -16,7 +16,7 @@ Homestreetapp::Application.routes.draw do
   devise_scope :user do 
     get '/users/user_sign_up', to: 'devise/registrations#new', as:'new_donor_user_registration'
   end
-  
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
