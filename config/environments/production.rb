@@ -79,6 +79,19 @@ Homestreetapp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # config/environments/production.rb
+  config.action_mailer.default_url_options = { :host => 'Homestreetapp.herokuapp.com' }
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'google.com',
+  user_name:            ENV["COMPANY_EMAIL"],
+  password:             ENV["EMAIL_PASSWORD"],
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -87,15 +100,5 @@ Homestreetapp::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'google.com',
-    user_name:            ENV["COMPANY_EMAIL"],
-    password:             ENV["EMAIL_PASSWORD"],
-    authentication:       'plain',
-    enable_starttls_auto: true  }
 
 end
