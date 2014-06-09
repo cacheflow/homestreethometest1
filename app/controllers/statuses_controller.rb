@@ -15,8 +15,8 @@ class StatusesController < ApplicationController
   	@donor = @resident.donors
     @status = Status.new(status_params)
     if @status.save
-      UserMailer.send_status_email(@donor, @status, @resident)
-      # text_updates(@status.content, @donor)
+      # UserMailer.send_status_email(@donor, @status, @resident)
+      text_updates(@status.content, @donor)
       twitter_update(@resident.name, @status.content)
       redirect_to residents_path
     else
@@ -46,15 +46,15 @@ class StatusesController < ApplicationController
 
   def text_updates(content, donors)
     @content = content
-    @account_sid = ENV["TWILIO_ID"]
-    @auth_token = ENV["TWILIO_SECRET"]
+    # @account_sid = ENV["TWILIO_ID"]
+    # @auth_token = ENV["TWILIO_SECRET"]
     @donors = donors
     @donors.each do |d|
       if d.phone_updates
         # set up a client to talk to the Twilio REST API 
-        @client = Twilio::REST::Client.new @account_sid, @auth_token  
+        @client = Twilio::REST::Client.new ENV["TWILIO_ID"], ENV["TWILIO_SECRET"]  
         @client.account.messages.create({
-          :from => '+16513199035', 
+          :from => ENV["TWILIO_PHONE"], 
           :to => "#{d.phone}",
           :body => "Message: #{@content}"
           })
