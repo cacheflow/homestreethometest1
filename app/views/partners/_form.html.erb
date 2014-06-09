@@ -1,16 +1,15 @@
-<%= form_for (@partner) do |f| %>
-	Name <%= f.text_field :name %><br />
-	Organization <%= f.text_field :org %><br />
-	Address <%= f.text_field :address %><br />
-	Phone <%= f.text_field :phone %><br />
-	Email <%= f.text_field :email, :value => current_user.email %><br />
-	Website <%= f.text_field :website %><br />
+<%= bootstrap_form_for (@partner) do |f| %>
+	<%= f.text_field :name %><br />
+	<%= f.text_field :org %><br />
+	<%= f.text_field :address %><br />
+	<%= f.text_field :phone %><br />
+	<%= f.text_field :email, :value => current_user.email %><br />
+	<%= f.text_field :website %><br />
 	<div class="field">
-	  <%= f.label :image %><br />
 	  <%= f.file_field :image %>
     </div>
 	<%= f.hidden_field :user_id, :value => current_user.id %><br />
-	<%= f.submit %>
+	<%= f.submit class: "btn btn-primary btn-block" %>
 
 
 <% end %>

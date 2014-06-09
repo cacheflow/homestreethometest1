@@ -1,15 +1,14 @@
-<%= form_for (@resident) do |f| %>
-	Name <%= f.text_field :name %><br />
-	Bio <%= f.text_field :bio %><br />
-	Goals <%= f.text_field :goals %><br />
-	Monetary Goal <%= f.text_field :goal_monetary %><br />
+<%= bootstrap_form_for (@resident) do |f| %>
+	<%= f.text_field :name %><br />
+	<%= f.text_field :bio %><br />
+	<%= f.text_field :goals %><br />
+	<%= f.text_field :goal_monetary %><br />
 	<%= f.collection_select :partner_id, Partner.all, :id, :name %>
 	<div class="field">
-	  <%= f.label :image %><br />
 	  <%= f.file_field :image %>
     </div>
 	
 	<%= f.hidden_field :user_id, :value => current_user.id %><br />
-	<%= f.submit %>
+	<%= f.submit class: "btn btn-primary btn-block"%>
 
 <% end %>
