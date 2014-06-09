@@ -1,3 +1,40 @@
+<style>
+	
+	.rotate {
+
+			/* Safari */
+			-webkit-transform: rotate(-90deg);
+
+			/* Firefox */
+			-moz-transform: rotate(-90deg);
+
+			/* IE */
+			-ms-transform: rotate(-90deg);
+
+			/* Opera */
+			-o-transform: rotate(-90deg);
+
+			/* Internet Explorer */
+			filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+			}
+			.chart div {
+				  font: 15px sans-serif;
+				  text-align: left;
+				  padding: 3px;
+				  margin: 1px;
+				  color: black;
+			}
+			.arc path {
+  				stroke: #fff;
+			}
+			svg {
+				margin-left: 200px;
+			}
+
+
+</style>
+
 <div ng-app="partner-app" class="container">
 
 
@@ -5,27 +42,73 @@
 
     <button type="button" class="btn btn-lg btn-info" data-template="/aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
     </button>
+    <button type="button" class="btn btn-lg btn-success" onclick="populateit()">Visualize Data</button>
+<br></br>
 
-    <h2> Amount Raised </h2>
-<div ng-repeat="partner in partners">
-	{{partner.name}}
-	<div class = goalbox><p>${{partner.sum}}</p></div>
-</div>
-    
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">By the Numbers</h3>
+  </div>
+  <div class="panel-body">
+   <div class="row">
+  		<div class="col-md-4 text-center">
+  			<span class="glyphicon glyphicon-user"></span>  {{partners.length}} <br>
+  			Total Partners
+  		</div>
+  		<div class="col-md-4 text-center">
+  			<span class="glyphicon glyphicon-user"></span>  ${{avgdonation(partners)}} <br>
+  			Average Donations Raised	
+  		</div>
+  		<div class="col-md-4 text-center">
+  			<span class="glyphicon glyphicon-user"></span>  {{avgresidents(partners)}} <br>
+  			Average Number of Residents
+  		</div>
+	</div>
   </div>
 </div>
-<button onclick="populateit()">Visualize it</button><br>
+
+    <h2> Average Donation Size </h2>
+<div ng-repeat="partner in partners">
+	<strong>{{partner.name}}</strong><div class = donbox>${{partner.avg}}</div>
+</div>
+     <h2> Amount Raised per Partner</h2>
+
+<div ng-repeat="partner in partners">
+<div class="chart">
+	{{partner.name}}<div class = totalbox>${{partner.sum}}</div>
+</div>
+</div>
+
+
+  </div>
+</div>
+
 		<script>
 		function populateit(){
 
 		d3.json("metrics.json", function(error, json) {
 			var raised = [];
+			var avgdon = [];
+			var partnames = [];
 			partnerdata = json;
 	
 			for (i=0; i<partnerdata.length; i++){
+				if(partnerdata[i].sum== null){
+					partnerdata[i].sum = 0;
+				}
+				if(partnerdata[i].avg== null){
+					partnerdata[i].avg = 0;
+				}
+			partnames.push(partnerdata[i].name);
 			raised.push(partnerdata[i].sum);
+			avgdon.push(partnerdata[i].avg);
 			};
+	
+			
 			applyD3Selectors(raised);
+			applyD3avgSelectors(avgdon);
+			piechart(raised, partnames);
+			
 		});
 
 		
@@ -34,16 +117,80 @@
 				var raised = x;
 				console.log(raised);
 				
-			d3.selectAll(".goalbox p").style("background-color", function() {
-			  		return "hsl(" + Math.random() * 360 + ",100%,50%)";
-				});
-			d3.selectAll(".goalbox p")
+			d3.selectAll(".totalbox")
 			    .data(raised)
 			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
+			    .style("background-color", function(d) {
+			  		return "hsl(" + d*.2 + ",100%,50%)";
+				})
+				.text(function(d) {
+        			return "$" + d;
+   				})
 			    .style("width", function(d, i) { return (d) + "px"; });
-			}
-		};
+			};
+		function applyD3avgSelectors(x){
+				// Put D3 magic here
+				var avgdon = x;
+				console.log(avgdon);
+				
+			d3.selectAll(".donbox")
+			    .data(avgdon)
+			    .style("background-color", function(d) {
+			  		return "hsl(" + d*.9 + ",100%,50%)";
+				})
+				.text(function(d) {
+        			return "$" + Math.round(d);
+   				})
+			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
+			    .style("width", function(d, i) { return (d) + "px"; });
+			};
+			function piechart(x,y){
+				var w = 500,
+				    h = 300,
+				    r = Math.min(w, h) / 2;
 
+				var color = d3.scale.ordinal()
+				    .range(["#5DFC0A", "#00FFCC", "#00FFCC", "#FF0066", "#FF944D", "#FF3300", "#3366FF"]);
+				data = x;
+				theirnames= y;
+
+				var vis = d3.select("body")
+		        .append("svg:svg")              //create the SVG element inside the <body>
+		        .data([data])                   //associate our data with the document
+		            .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+		            .attr("height", h)
+		        .append("svg:g")                //make a group to hold our pie chart
+		            .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
+		 
+		    var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
+		        .outerRadius(r);
+		 
+		    var pie = d3.layout.pie()           //this will create arc data for us given a list of values
+		 
+		    var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
+		        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
+		        .enter()                            
+		            .append("svg:g")                
+		                .attr("class", "slice");    
+		 
+		        arcs.append("svg:path")
+		                .attr("fill", function(d, i) { return color(i); } ) 
+		                .attr("d", arc);                                  
+		 
+		        arcs.append("svg:text")                                     
+		                .attr("transform", function(d) {                    
+		                d.innerRadius = 0;
+		                d.outerRadius = r;
+		                return "translate(" + arc.centroid(d) + ")";        
+		            })
+		            .attr("text-anchor", "middle")                         
+		            .text(function(d, i) { return theirnames[i]; });        
+				 
+				};
+
+
+
+		};
 		
 
 		</script>

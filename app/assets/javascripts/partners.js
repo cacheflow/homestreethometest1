@@ -35,12 +35,22 @@ $scope.showPartner = function(partner){
 $scope.hidePartner = function(partner){
       partner.details = false;
     }
-$scope.donationTotal = function(partner){
+$scope.avgdonation = function(partners){
     var totaldonation = 0;
-      for( i=0; i<partner.donations.length; i++){
-        totaldonation = totaldonation + partner.donations[i].amount;
+    var avgdonation = 0;
+      for( i=0; i<partners.length; i++){
+        totaldonation = totaldonation + partners[i].sum;
       };
-      return totaldonation;
+      avgdonation = totaldonation/partners.length
+      return avgdonation;
+}
+$scope.avgresidents = function(partners){
+      var numresidents = 0;
+      for( i=0; i<partners.length; i++){
+        numresidents = numresidents + partners[i].residents.length;
+      };
+      avgresident = numresidents/partners.length
+      return avgresident;
 }
 
 
