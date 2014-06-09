@@ -1,0 +1,19 @@
+
+<div class="container">
+<div class="container col-md-8 col-md-offset-2 text-center">
+
+<div class="jumbotron success">
+<h1> Thanks for donating!</h1>
+
+<h1><span class="glyphicon glyphicon-heart"></span></h1>
+
+<h4> <%= @resident.name %> really appreciates your generous donation of $<%= @donation.amount %>! </h4>
+
+<% if @donation.donor_id == nil %> 
+<h4> Fill out <%= link_to 'your profile', new_donor_path %> to receive updates on <%= @resident.name %> </h4>
+<% else %>
+<h4> Turn on updates in <%= link_to 'your profile', edit_donor_path(@donation.donor_id) %> to get filled in on how <%= @resident.name %> is doing</h4>
+<% end %>
+
+</div>
+</div>
