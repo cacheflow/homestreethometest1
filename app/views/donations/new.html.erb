@@ -1,10 +1,14 @@
-<%= form_for @donation, url: {action: "create"} do |f| %>
-	Amount <%= f.text_field :amount %><br />
+<div class="container">
+<div class="col-md-2 col-md-offset-5 text-center">
+<%= bootstrap_form_for @donation, url: {action: "create"} do |f| %>
+	<%= f.text_field :amount, prepend: '$' %><br />
 	<%= f.hidden_field :resident_id, :value => @resident.id %>
 	<% if Donor.where(:user_id => current_user.id)[0] != nil %>
 	<%= f.hidden_field :donor_id, :value => Donor.where(:user_id => current_user.id)[0].id %>
 	<% end %>
-	<%= f.submit %>
+	<%= f.submit 'Donate', class: "btn btn-success btn-lg"%>
 
 
 <% end %>
+</div>
+</div>
