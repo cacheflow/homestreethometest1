@@ -15,7 +15,7 @@ class StatusesController < ApplicationController
   	@donor = @resident.donors
     @status = Status.new(status_params)
     if @status.save
-      # UserMailer.send_status_email(@donor, @status, @resident)
+      UserMailer.send_status_email(@donor, @status, @resident)
       # text_updates(@status.content, @donor)
       twitter_update(@resident.name, @status.content)
       redirect_to residents_path

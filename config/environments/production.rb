@@ -79,7 +79,7 @@ Homestreetapp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # config/environments/production.rb
-  config.action_mailer.default_url_options = { :host => 'Homestreetapp.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://homestreethome.herokuapp.com/' }
 
 
   config.action_mailer.delivery_method = :smtp
