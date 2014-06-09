@@ -2,6 +2,8 @@ Homestreetapp::Application.routes.draw do
   get "metrics/index"
   get "welcome/index"
   get 'partners/metrics', to: 'partners#metrics'
+  get 'residents/metrics', to: 'residents#metrics'
+   get 'residents/info', to: 'residents#info'
 
   root "welcome#index"
   devise_for :users

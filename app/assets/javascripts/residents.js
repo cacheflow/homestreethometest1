@@ -1,4 +1,4 @@
-var residentApp = angular.module('resident-app', ['ngResource']).config(
+var residentApp = angular.module('resident-app', ['ngResource', 'mgcrea.ngStrap']).config(
     ['$httpProvider', function($httpProvider) {
     var authToken = angular.element("meta[name=\"csrf-token\"]").attr("content");
     var defaults = $httpProvider.defaults.headers;
@@ -37,9 +37,20 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
         console.log($scope.ressyID)
     }
     $scope.returnRes();
+    $scope.numdonations = function(resident){
+      return resident.donations.length
+    }
+    $scope.numstatuses = function(resident){
+      return -resident.statuses.length
+    }
 
-
-
+    $scope.calcrevTotal = function(r){
+      var totaldonation = 0;
+      for( i=0; i<r.donations.length; i++){
+        totaldonation = totaldonation + r.donations[i].amount;
+      };
+      return -totaldonation;
+    }
  
     $scope.calcTotal = function(r){
       var totaldonation = 0;
@@ -67,13 +78,31 @@ residentApp.controller('ResidentCtrl', ['$scope', 'Resident', function($scope, R
       return amtleft 
 
     }
-    $scope.saveDonation = function(resident){
-      $scope.newDonation = resident.donations.build;
-        $scope.newDonation.$save(function(resident) {
-        $scope.newDonation = resident.donations.build
-      });
-   
+$scope.showRes = function(resident){
+      resident.details = true;
     }
+$scope.hideRes = function(resident){
+      resident.details = false;
+    }
+$scope.avgdonation = function(r){
+    var totaldonation = 0;
+    for (j=0; j<r.length; j++){
+      for( i=0; i<r[j].donations.length; i++){
+        totaldonation = totaldonation + r[j].donations[i].amount;
+      }
+    };
+      avgdonation = totaldonation/r.length
+      return avgdonation;
+}
+$scope.avgstatuses = function(r){
+      var numstatuses = 0;
+      var avgstatus = 0;
+      for (j=0; j<r.length; j++){
+        numstatuses = numstatuses + r[j].statuses.length;
+    };
+      avgstatus = numstatuses/r.length;
+      return avgstatus;
+}
 
 
    }])

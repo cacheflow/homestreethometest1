@@ -1,0 +1,58 @@
+<div ng-app="resident-app" class="container">
+
+
+  <div ng-controller="ResidentCtrl">
+
+ <button type="button" class="btn btn-lg btn-info" data-template="/aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
+    </button>
+
+    <h2> Residents </h2>
+
+     <div class="form-group">
+
+        <input ng-model="searchresident" type="text" class="form-control" placeholder="search residents">
+          {{ searchresident}}
+      </div>
+    <table class="table">
+    <th>Name</th>
+    <th>Partner Name</th>
+    <th>Amount Raised</th>
+    <th>Details</th>
+
+      <tbody>
+      <tr ng-repeat="resident in residents | filter: searchresident ">
+
+        <td>
+        {{resident.name}} 
+        <div ng-show="resident.details">
+          <dl>
+    
+            <dd>Bio: {{resident.bio}}</dd>   
+            <dd>Monetary Goal {{resident.goal_monetary}}</dd>
+            <dd>Goals: {{resident.goals}}</dd>
+            <dd>Partner Organization: {{resident.partnerorg}}</dd>
+
+          </dl>
+          </div></td>
+        <td>{{resident.partnername}} </td>
+
+        
+        
+        </td>
+        <td>${{calcTotal(resident)}}</td>
+
+
+        <td>
+        <span ng-hide="!resident.details"><a ng-click="hideRes(resident)">Hide</a></span>
+        <span ng-hide="resident.details"><a ng-click="showRes(resident)">Show</a></span>
+        </td>
+  
+        
+      </tr>
+      </tbody>
+      </table>
+    
+   
+
+  </div>
+</div>
