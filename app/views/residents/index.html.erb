@@ -1,3 +1,5 @@
+
+
 <div ng-app="resident-app" class="container">
 
 <h1 class="text-center">Residentially Challenged </h1>
@@ -9,7 +11,7 @@
 <div style="height:800px;overflow:auto;" when-scrolled="loadMore()"> 
       <div ng-repeat="resident in residents | limitTo:numdisplay">
         <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
+          <div class="thumbnail height:400px">
 
 
 
@@ -19,7 +21,7 @@
               <div class="caption">
                 <h4>{{resident.name| limitTo : 20}}</h4>
 
-                <p>{{resident.bio | limitTo : 100}}...</p>
+                <p>{{resident.bio | limitTo : 70}}...</p>
                 <p>${{calcTotal(resident)}} of ${{resident.goal_monetary}} from {{resident.donations.length}} 
                 <ng-pluralize count="resident.donations.length"
                  when="{0: 'donations',
