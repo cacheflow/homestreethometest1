@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ResidentsController do
+describe ResidentsController, :type => :controller do
 	before do
 	@partneruser = User.create!(role_id: 3, email: 'pineapple@gmail.com', password:'12345678')
 	@rcspartner = Partner.create!(org: 'salvation army', address: '121 here place', phone: 8186754321, email: 'calvin@harris.com', website: 'imagnoway.com', user_id: @partneruser.id)
@@ -70,7 +70,7 @@ describe ResidentsController do
       describe 'unsuccessful create' do
         let :invalid_attributes do
           {
-             name: nil,
+             name: 'hi',
              bio: nil,
              goals: nil,
           }
@@ -78,7 +78,7 @@ describe ResidentsController do
         it 'should not create anything new in the db' do
           expect do
             post :create, resident: invalid_attributes
-          end.to_not change(Resident, :count).by(1)
+          end.to_not change(Resident, :count)
         end
         
         it "should rerender the new template" do

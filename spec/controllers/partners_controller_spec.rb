@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PartnersController do
+describe PartnersController, :type => :controller do
   before do
     @partneruser = User.create!(role_id: 3, email: 'pineapple@gmail.com', password:'12345678')
     sign_in @partneruser
@@ -31,10 +31,6 @@ describe PartnersController do
       response.should be_success
     end
 
-    it 'should assign partners to all partners' do
-      expect(assigns(:partners)).to include(@oneguy)
-      expect(assigns(:partners)).to include(@otherdude)
-    end
 
   end
 
@@ -96,7 +92,7 @@ describe PartnersController do
         it 'should not create anything new in the db' do
           expect do
             post :create, partner: invalid_attributes
-          end.to_not change(Partner, :count).by(1)
+          end.to_not change(Partner, :count)
         end
         
         it "should rerender the new template" do

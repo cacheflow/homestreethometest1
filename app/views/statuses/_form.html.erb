@@ -1,8 +1,8 @@
-<%= form_for @status, url: {action: "create"} do |f| %>
-	Update! <%= f.text_area :content %><br />
+<%= bootstrap_form_for @status, url: {action: "create"} do |f| %>
+	<%= f.text_area :content %><br />
 	<%= f.hidden_field :resident_id, :value => @resident.id %>
 	
-	<%= f.submit %>
+	<%= f.submit class: "btn btn-primary btn-block" %>
 
 
 <% end %>

@@ -9,7 +9,7 @@ class DonationsController < ApplicationController
   	@resident = Resident.find(params[:resident_id])
     @donation = Donation.new(donation_params)
     if @donation.save
-      redirect_to residents_path
+      redirect_to resident_donation_path(@resident, @donation)
     else
       render 'new'
     end
@@ -17,8 +17,9 @@ class DonationsController < ApplicationController
 
   def show
     @resident = Resident.find(params[:resident_id])
-    @donation = Post.find(params[:id])
+    @donation = Donation.find(params[:id])
   end
+
 
   def donation_params
   	params.require(:donation).permit(:amount, :donor_id, :resident_id)

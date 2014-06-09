@@ -35,12 +35,12 @@
 
 </style>
 
-<div ng-app="partner-app" class="container">
+<div ng-app="resident-app" class="container">
 
 
-  <div ng-controller="PartnerCtrl">
+  <div ng-controller="ResidentCtrl">
 
-    <button type="button" class="btn btn-lg btn-info" data-template="/aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
+ <button type="button" class="btn btn-lg btn-info" data-template="/aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
     </button>
     <button type="button" class="btn btn-lg btn-success" onclick="populateit()">Visualize Data</button>
 <br></br>
@@ -52,31 +52,34 @@
   <div class="panel-body">
    <div class="row">
   		<div class="col-md-4 text-center">
-  			<span class="glyphicon glyphicon-user"></span>  {{partners.length}} <br>
-  			Total Partners
+  			<span class="glyphicon glyphicon-user"></span>  {{residents.length}} <br>
+  			Total Residents
   		</div>
   		<div class="col-md-4 text-center">
-  			<span class="glyphicon glyphicon-user"></span>  ${{avgdonation(partners) | number: 2}} <br>
-  			Average Donations Raised	
+  			<span class="glyphicon glyphicon-user"></span>  ${{avgdonation(residents) | number: 2}} <br>
+  			Average Donations numdon	
   		</div>
   		<div class="col-md-4 text-center">
-  			<span class="glyphicon glyphicon-user"></span>  {{avgresidents(partners) | number: 2}} <br>
-  			Average Number of Residents
+  			<span class="glyphicon glyphicon-user"></span>  {{avgstatuses(residents) | number: 2}} <br>
+  			Average Number of Statuses
   		</div>
 	</div>
   </div>
 </div>
+	<h2> Most Updates </h2>
+<div ng-repeat="resident in residents | orderBy : numstatuses | limitTo: 5">
+	<h4>{{resident.name}} : {{resident.statuses.length}}<h4>
+</div>	
 
-    <h2> Average Donation Size </h2>
-<div ng-repeat="partner in partners">
-	<strong>{{partner.name}}</strong><div class = donbox>${{partner.avg}}</div>
+	<h2> Most Amount of Money Raised </h2>
+<div ng-repeat="resident in residents | orderBy:calcrevTotal | limitTo: 5">
+	<h4>{{resident.name}} : ${{calcTotal(resident)}}</h4>
 </div>
-     <h2> Amount Raised per Partner</h2>
 
-<div ng-repeat="partner in partners">
-<div class="chart">
-	{{partner.name}}<div class = totalbox>${{partner.sum}}</div>
-</div>
+
+    <h2> Most Donations </h2>
+<div ng-repeat="resident in residents | orderBy : numdonations | limitTo : 5">
+	<strong>{{resident.name}}</strong><div class = donbox></div>
 </div>
 
 
@@ -87,70 +90,67 @@
 		function populateit(){
 
 		d3.json("metrics.json", function(error, json) {
-			var raised = [];
-			var avgdon = [];
-			var partnames = [];
-			partnerdata = json;
+			var numdon = [];
+			var somenum = [];
+			var resnames = [];
+			resdata = json;
 	
-			for (i=0; i<partnerdata.length; i++){
-				if(partnerdata[i].sum== null){
-					partnerdata[i].sum = 0;
+			for (i=0; i<resdata.length; i++){
+				if(resdata[i].donations.length== null){
+					resdata[i].donations.length== 0;
 				}
-				if(partnerdata[i].avg== null){
-					partnerdata[i].avg = 0;
-				}
-			partnames.push(partnerdata[i].name);
-			raised.push(partnerdata[i].sum);
-			avgdon.push(partnerdata[i].avg);
+
+			resnames.push(resdata[i].name);
+			numdon.push(resdata[i].donations.length);
+			
 			};
 	
+			applyD3Selectors(numdon);
+			applyD32Selectors(somenum);
 			
-			applyD3Selectors(raised);
-			applyD3avgSelectors(avgdon);
-			piechart(raised, partnames);
+			piechart(numdon, resnames);
 			
 		});
+		function applyD32Selectors(x){
+				// Put D3 magic here
+				var numdon = x;
+				
+			d3.selectAll(".statbox")
+			    .data(numdon)
+			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
+			    .style("background-color", function(d) {
+			  		return "hsl(" + d*10 + ",100%,50%)";
+				})
+				.text(function(d) {
+        			return d;
+   				})
+			    .style("width", function(d, i) { return (d)*50 + "px"; });
+			};
 
 		
 		function applyD3Selectors(x){
 				// Put D3 magic here
-				var raised = x;
-				console.log(raised);
-				
-			d3.selectAll(".totalbox")
-			    .data(raised)
-			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
-			    .style("background-color", function(d) {
-			  		return "hsl(" + d*.2 + ",100%,50%)";
-				})
-				.text(function(d) {
-        			return "$" + d;
-   				})
-			    .style("width", function(d, i) { return (d) + "px"; });
-			};
-		function applyD3avgSelectors(x){
-				// Put D3 magic here
-				var avgdon = x;
-				console.log(avgdon);
+				var numdon = x;
 				
 			d3.selectAll(".donbox")
-			    .data(avgdon)
+			    .data(numdon)
+			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
 			    .style("background-color", function(d) {
-			  		return "hsl(" + d*.9 + ",100%,50%)";
+			  		return "hsl(" + d*10 + ",100%,50%)";
 				})
 				.text(function(d) {
-        			return "$" + Math.round(d);
+        			return d;
    				})
-			    .style("height", "30px").style("margin", 0).style("padding", 0).transition()
-			    .style("width", function(d, i) { return (d) + "px"; });
+			    .style("width", function(d, i) { return (d)*50 + "px"; });
 			};
+
 			function piechart(x,y){
 				var w = 500,
 				    h = 300,
 				    r = Math.min(w, h) / 2;
 
 				var color = d3.scale.ordinal()
-				    .range(["#5DFC0A", "#FF3300", "#00FFCC", "#00FFCC", "#FF0066", "#FF944D", "#3366FF"]);
+				    .range(["#5DFC0A", "#FF3300", "#ff00e8", "#69ff00", "#00FFCC", "#0EEDF1", "#00FFCC", "#FF0066", "#FF944D", "#3366FF"]);
 				data = x;
 				theirnames= y;
 

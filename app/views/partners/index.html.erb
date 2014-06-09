@@ -35,7 +35,7 @@
             <dd>Address: {{partner.address}}</dd>
             <dt>Residents:</dt>
             <ul>
-              <div ng-repeat="resident in partner.residents">{{resident.name}}</div>
+              <div ng-repeat="resident in partner.residents"><a href="/residents/{{resident.id}}">{{resident.name}}</a></div>
             </ul>
 
             

@@ -50,6 +50,16 @@ class ResidentsController < ApplicationController
     respond_with @residents
   end
 
+  def metrics
+    @residents = Resident.all
+    respond_with @residents
+  end
+
+  def info
+    @residents = Resident.all
+    respond_with @residents
+  end
+
  
   def resident_params
     params.require(:resident).permit(:name, :bio, :goals, :partner_id, :image, :user_id, :goal_monetary)
