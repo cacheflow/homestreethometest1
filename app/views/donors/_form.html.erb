@@ -1,12 +1,12 @@
-<%= form_for (@donor) do |f| %>
-	Name <%= f.text_field :name %><br />
-	Organization <%= f.text_field :org %><br />
-	Phone <%= f.text_field :phone %><br />
-	Email <%= f.text_field :email, :value => current_user.email %><br />
-	Email Updates <%= f.check_box :email_updates %><br />
-	Phone Updates<%= f.check_box :phone_updates %>
+<%= bootstrap_form_for (@donor) do |f| %>
+	<%= f.text_field :name %><br />
+	<%= f.text_field :org %><br />
+	<%= f.text_field :phone %><br />
+	<%= f.text_field :email, :value => current_user.email %><br />
+	<%= f.check_box :email_updates %><br />
+	<%= f.check_box :phone_updates %>
 	<%= f.hidden_field :user_id, :value => current_user.id %><br />
-	<%= f.submit %>
+	<%= f.submit  class: "btn btn-sm btn-primary btn-block" %>
 
 
 <% end %>
