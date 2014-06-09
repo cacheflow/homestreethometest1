@@ -6,7 +6,7 @@
 
   <div ng-controller="PartnerCtrl">
 
-    <button type="button" class="btn btn-lg btn-info" data-template="aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
+    <button type="button" class="btn btn-lg btn-info" data-template="/aside.html" data-placement="left" bs-aside="aside" data-container="body">Dashboard
     </button>
 
     <h2> Partners </h2>
@@ -19,7 +19,6 @@
     <table class="table">
     <th>Name</th>
     <th>Organization</th>
-    <th>Total Raised</th>
     <th>Number Residents</th>
     <th>Details</th>
 
@@ -31,9 +30,7 @@
         <div ng-show="partner.details">
           <dl>
     
-            <dd>Email: {{partner.email}}</dd>
-           
-            <dd>Number Donations:{{partner.count}}</dd>
+            <dd>Email: {{partner.email}}</dd>   
     
             <dd>Address: {{partner.address}}</dd>
             <dt>Residents:</dt>
@@ -50,7 +47,6 @@
         
         
         </td>
-        <td>${{partner.sum}}</td>
         <td>{{partner.residents.length}}</td>
 
 
