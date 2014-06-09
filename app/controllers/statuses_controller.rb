@@ -46,8 +46,8 @@ class StatusesController < ApplicationController
 
   def text_updates(content, donors)
     @content = content
-    @account_sid = Figaro.env.twilio_id 
-    @auth_token = Figaro.env.twilio_secret
+    @account_sid = ENV["TWILIO_ID"]
+    @auth_token = ENV["TWILIO_SECRET"]
     @donors = donors
     @donors.each do |d|
       if d.phone_updates

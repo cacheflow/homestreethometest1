@@ -10,7 +10,5 @@
   Role.find_or_create_by_name role
 end
 
-alfred = User.create(email: "hi@gmail.com", password: '12345678', role_id: 1)
-donor1 = Donor.create(name: "Joe Schmo", user_id: alfred.id)
 # donation1 = Donation.create( amount: 100, donor_id: donor1.id )
 
