@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'json-spec'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -41,6 +43,8 @@ gem 'twitter', '~> 5.3.1'
 gem 'oauth', '~> 0.4.7'
 gem "d3-rails"
 gem 'rails_12factor'
+
+
 
 
 group :doc do
