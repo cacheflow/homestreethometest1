@@ -5,11 +5,11 @@ Heroku app: http://homestreethome.herokuapp.com/
 Profiles and status updates (donors have the option of being emailed or texted) of the homeless can be managed by them or by a partner organization (ex. a shelter). User authentication was completed with devise and cancancan. Text updates are sent using Twilio.
 
 
-Partners and the site admins also have access to a custom dashboard to track progress and see what's been the most effective in raising money. Data is pulled from the DB with custom sql queries and formatted as JSON. Charts were made with D3.
+Partners and the site admins also have access to a custom dashboard to track progress and see what's been the most effective in raising money. Data is pulled from the DB with custom sql queries and formatted as JSON with an active model serializer. Charts were made with D3. 
 
 Tests writted in rspec, in the spec folder.
 
-Current profiles are samples and not real homeless people. Index page has infinite scroll.
+Current profiles are samples and not real homeless people. Index page has infinite scroll and is displayed using angular and our own API.
 
 After fixing up some things, we hope to give it away to charities or anyone who would like to get it up and running! 
 
