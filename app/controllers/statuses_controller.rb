@@ -1,18 +1,16 @@
 class StatusesController < ApplicationController
   require 'oauth'
+  before_action :find_resident, :except=> [:text_updates, :twitter_update, :status]
 
   def index
-  	@resident = Resident.find(params[:resident_id])
-	@statuses = Status.all
+  @statuses = Status.all
   end
   def new
-  	@resident = Resident.find(params[:resident_id])
-  	@status = Status.new
+    @status = Status.new
   end
 
   def create
-  	@resident = Resident.find(params[:resident_id])
-  	@donor = @resident.donors
+    @donor = @resident.donors
     @status = Status.new(status_params)
     if @status.save
       # UserMailer.send_status_email(@donor, @status, @resident)
@@ -24,20 +22,22 @@ class StatusesController < ApplicationController
     end
   end
 
+  def find_resident 
+    @resident = Resident.find(params[:resident_id])
+  end 
+
   def show
     @resident = Resident.find(params[:resident_id])
     @status = Status.find(params[:id])
   end
 
   def edit
-  	@resident = Resident.find(params[:resident_id])
     @status = Status.find(params[:id])
   end
 
   def update
-  	@resident = Resident.find(params[:resident_id])
     @status = Status.find(params[:id])
-	if @status.update(status_params)
+  if @status.update(status_params)
       redirect_to resident_status_path(@resident, @status)
     else
       render 'edit'
@@ -96,7 +96,9 @@ class StatusesController < ApplicationController
     end
   end
 
+  private
+
   def status_params
-  	params.require(:status).permit(:content, :resident_id)
+    params.require(:status).permit(:content, :resident_id)
   end
 end
